@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.distsDirectory
+
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
@@ -24,6 +26,7 @@ kotlin {
             }
         }
         binaries.executable()
+        distsDirectory.set(file("distribution"))
     }
     sourceSets {
         val jsMain by getting {
