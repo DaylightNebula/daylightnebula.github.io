@@ -1,23 +1,23 @@
 import me from "./me.jpg";
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Col, Container, FormText, Image, Row} from "react-bootstrap";
 import Topbar from "../../helpers/Topbar";
 import {colors} from "../../helpers/Colors";
+import IntroCard from "../../cards/IntroCard";
 
 function Intro() {
     return (
-        <Col style={{ background: colors.primaries.red }} >
-            <Row xs={6} md={4} style={{display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',}} >
-                <Image
-                    src={me}
-                    roundedCircle={true}
-                    style={{ width: "150px", overflow: "hidden" }}
-                    alt="Avatar"
-                />
-                <text>Hi</text>
-            </Row>
-        </Col>
+        <Container style={{
+            background: colors.grays.darkgray,
+            padding: 20,
+            display: "flex",
+            justifyContent: "center"
+        }} >
+            <IntroCard/>
+            <Container style={{ width: "2.5%" }} />
+            <Container style={{ width: "30%", background: colors.primaries.green, borderRadius: 20, padding: 20, paddingLeft: 20 }} >
+
+            </Container>
+        </Container>
     );
 }
 
