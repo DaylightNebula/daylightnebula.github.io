@@ -13,8 +13,8 @@ function Intro() {
             justifyContent: "center"
         }} >
             <IntroCard/>
-            <Container style={{ width: "2.5%" }} />
-            <Container style={{ width: "30%", background: colors.primaries.green, borderRadius: 20, padding: 20, paddingLeft: 20 }} >
+            <Container style={{ width: 100 }} />
+            <Container style={{ width: 600, background: colors.primaries.green, borderRadius: 20, padding: 20, paddingLeft: 20 }} >
 
             </Container>
         </Container>

@@ -1,6 +1,8 @@
-import {Col, Container, Image, Row} from "react-bootstrap";
+import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import {colors} from "../helpers/Colors";
 import me from "../pages/mainpage/me.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
 
 function Text() {
     return (
@@ -25,16 +27,73 @@ function Text() {
 }
 
 function ContactMeIcons() {
+    const discordClick = () => { console.log("TODO discord link") };
+    const gmailClick = () => { console.log("TODO gmail link") };
+    const githubClick = () => { console.log("TODO github link") };
+
     return (
-        <Container>
-            <i className="fab fa-google"></i>
+        <Container style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            paddingTop: 10
+        }} >
+            <Button style={{
+                background: colors.grays.darkgray,
+                border: "none",
+                width: 50,
+                height: 50,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }} onClick={discordClick} >
+                <FontAwesomeIcon icon={faDiscord} style={{
+                    width: 40,
+                    height: 40,
+                    color: colors.grays.offwhite
+                }} />
+            </Button>
+
+            <Button style={{
+                background: colors.grays.darkgray,
+                border: "none",
+                width: 50,
+                height: 50,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }} onClick={gmailClick} >
+                <FontAwesomeIcon icon={faGoogle} style={{
+                    width: 40,
+                    height: 40,
+                    color: colors.grays.offwhite
+                }} />
+            </Button>
+
+            <Button style={{
+                background: colors.grays.darkgray,
+                border: "none",
+                width: 50,
+                height: 50,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }} onClick={githubClick} >
+                <FontAwesomeIcon icon={faGithub} style={{
+                    width: 40,
+                    height: 40,
+                    color: colors.grays.offwhite
+                }} />
+            </Button>
         </Container>
     );
 }
 
 function IntroCard() {
     return (
-        <Container style={{ width: "30%" }} >
+        <Container style={{ width: 600 }} >
             <Col style={{ background: colors.primaries.red, borderRadius: 20, padding:20 }} >
                 <Row xs={6} md={4} style={{display: 'flex',
                     alignItems: 'center',
