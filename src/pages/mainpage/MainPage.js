@@ -3,6 +3,8 @@ import {Col, Container, FormText, Image, Row} from "react-bootstrap";
 import Topbar from "../../helpers/Topbar";
 import {colors} from "../../helpers/Colors";
 import IntroCard from "../../cards/IntroCard";
+import {Grid} from "@mui/material";
+import TechCard from "../../cards/TechCard";
 
 function Intro() {
     return (
@@ -10,13 +12,12 @@ function Intro() {
             background: colors.grays.darkgray,
             padding: 20,
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "center",
+            gridTemplateColumns: "repeat(auto-fit, minmax(600px, 600px))"
         }} >
-            <IntroCard/>
+            <IntroCard style={{ aspectRatio: 0.75, width: "100%" }} />
             <Container style={{ width: 100 }} />
-            <Container style={{ width: 600, background: colors.primaries.green, borderRadius: 20, padding: 20, paddingLeft: 20 }} >
-
-            </Container>
+            <TechCard/>
         </Container>
     );
 }
