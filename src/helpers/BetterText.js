@@ -6,7 +6,7 @@ export default function BetterText(props) {
         fontFamily: "Roboto Mono",
         fontSize: props.size ? props.size : 20,
         color: props.color ? props.color : colors.grays.darkgray,
-        cursor: "none",
+        cursor: props.cursor ? props.cursor : "default",
         padding: props.padding ? props.padding : 0,
         backgroundColor: props.backgroundColor ? props.backgroundColor : "transparent"
     }} >{props.children}</FormText>);

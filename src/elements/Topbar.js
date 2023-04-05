@@ -15,8 +15,8 @@ function TopbarElement(props) {
 
     return (
         // eslint-disable-next-line no-restricted-globals
-        <BetterButton initColor={props.isHighlighted ? colors.grays.offwhite : "transparent"} hoverColor={colors.grays.campfire} radius={100} onClick={goto} >
-            <BetterText color={props.isHighlighted ? colors.grays.darkgray : colors.grays.offwhite} padding={5} >
+        <BetterButton initColor={props.isHighlighted ? colors.grays.offwhite : "transparent"} hoverColor={props.isHighlighted ? colors.grays.offwhite : colors.grays.campfire} radius={100} onClick={goto} >
+            <BetterText cursor={"pointer"} color={props.isHighlighted ? colors.grays.darkgray : colors.grays.offwhite} padding={5} >
                 {props.children}
             </BetterText>
         </BetterButton>
@@ -35,11 +35,12 @@ function Topbar() {
             position: "fixed",
             right: 10,
             top: 5,
-            background: colors.grays.darkgray,
             padding: 10,
             borderRadius: 100,
             display: "flex",
-            flexDirection: "row"
+            flexDirection: "row",
+            maxWidth: '100%',
+            backgroundImage: `linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})`
         }}>
             <TopbarElement scrollMult={0} isHighlighted={scroll === 0} >Introduction</TopbarElement>
             <div style={{ width: 10 }} />
