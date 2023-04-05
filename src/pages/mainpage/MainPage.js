@@ -1,23 +1,108 @@
 import me from "./me.jpg";
-import {Col, Container, FormText, Image, Row} from "react-bootstrap";
-import Topbar from "../../helpers/Topbar";
+import {Button, Container, FormText, Image} from "react-bootstrap";
 import {colors} from "../../helpers/Colors";
-import IntroCard from "../../cards/IntroCard";
-import {Grid} from "@mui/material";
-import TechCard from "../../cards/TechCard";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
+import './MainPage.css';
+
+function ContactButtons() {
+    const discordClick = () => { console.log("TODO discord link") };
+    const gmailClick = () => { console.log("TODO gmail link") };
+    const githubClick = () => { console.log("TODO github link") };
+
+    return (
+        <Container style={{
+            display: "flex",
+            flexDirection: "row"
+        }} >
+            <Button style={{
+                background: colors.grays.darkgray,
+                border: "none",
+                width: 50,
+                height: 50,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                '&:hover': {
+                    background: colors.grays.blue
+                }
+            }} className="contact-button"  onClick={discordClick} >
+                <FontAwesomeIcon icon={faDiscord} style={{
+                    width: 40,
+                    height: 40,
+                    color: colors.grays.offwhite
+                }} />
+            </Button>
+
+            <Button style={{
+                background: colors.grays.darkgray,
+                border: "none",
+                width: 50,
+                height: 50,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }} onClick={gmailClick} >
+                <FontAwesomeIcon icon={faGoogle} style={{
+                    width: 40,
+                    height: 40,
+                    color: colors.grays.offwhite
+                }} />
+            </Button>
+
+            <Button style={{
+                background: colors.grays.darkgray,
+                border: "none",
+                width: 50,
+                height: 50,
+                borderRadius: 10,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }} onClick={githubClick} >
+                <FontAwesomeIcon icon={faGithub} style={{
+                    width: 40,
+                    height: 40,
+                    color: colors.grays.offwhite
+                }} />
+            </Button>
+        </Container>
+    );
+}
 
 function Intro() {
     return (
         <Container style={{
+            height: '100vh',
             background: colors.grays.darkgray,
-            padding: 20,
             display: "flex",
             justifyContent: "center",
-            gridTemplateColumns: "repeat(auto-fit, minmax(600px, 600px))"
+            alignItems: "center"
         }} >
-            <IntroCard style={{ aspectRatio: 0.75, width: "100%" }} />
-            <Container style={{ width: 100 }} />
-            <TechCard/>
+            <Image src={me} style={{ width: 200, height: 200, borderRadius: 300, backgroundSize: "cover" }} />
+            <Container style={{
+                display: "flex",
+                flexDirection: "column",
+                padding: 20,
+                height: 200,
+                width: 400
+            }} >
+                <FormText style={{
+                    fontFamily: "Roboto Mono",
+                    fontSize: 35,
+                    color: colors.grays.offwhite
+                }} >Hi, I'm Noah Shaw!</FormText>
+                <Container style={{ height: 15 }} />
+                <FormText style={{
+                    fontFamily: "Roboto Mono",
+                    fontSize: 20,
+                    color: colors.grays.offwhite
+                }} >I am a full-stack developer based in the United States.</FormText>
+                <Container style={{ height: 15 }} />
+                <ContactButtons/>
+            </Container>
         </Container>
     );
 }
@@ -25,7 +110,6 @@ function Intro() {
 function MainPage() {
     return (
         <Container>
-            <Topbar/>
             <Intro/>
         </Container>
     );

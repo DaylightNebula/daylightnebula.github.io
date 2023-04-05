@@ -1,6 +1,5 @@
 import {Button, Col, Container, Image, Row} from "react-bootstrap";
 import {colors} from "../helpers/Colors";
-import me from "../pages/mainpage/me.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
 
