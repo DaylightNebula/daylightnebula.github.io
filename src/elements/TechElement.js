@@ -4,7 +4,7 @@ import {colors} from "../helpers/Colors";
 export default function TechElement() {
     return (
         <Container style={{
-            height: "100vh",
+            minHeight: "100vh",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
