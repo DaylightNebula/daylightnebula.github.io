@@ -6,7 +6,6 @@ import {useEffect, useState} from "react";
 import GradientText from "../helpers/GradientText";
 
 function ProjectDescription(props) {
-    console.log(`Descrition: ${props.project.description}`)
     return (
         <Container style={{ margin: 10 }} >
             <BetterText color={colors.grays.offwhite} size={15} >{props.project.hover}</BetterText>
