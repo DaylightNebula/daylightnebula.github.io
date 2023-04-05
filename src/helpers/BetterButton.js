@@ -14,6 +14,7 @@ export default function BetterButton(props) {
                 border: props.border ? props.border : "none",
                 padding: props.padding ? props.padding : 5,
                 borderRadius: props.radius ? props.radius : 5,
+                cursor: "pointer",
 
                 /* center content */
                 display: "flex",
@@ -21,7 +22,7 @@ export default function BetterButton(props) {
                 alignItems: "center"
             }}
             onClick={props.onClick}
-            onMouseOver={() => handleMouseOver()}
+            onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
         >
             {props.children}
