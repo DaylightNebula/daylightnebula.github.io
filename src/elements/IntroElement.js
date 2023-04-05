@@ -3,13 +3,14 @@ import {colors} from "../helpers/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
 import BetterButton from "../helpers/BetterButton";
-import me from "../pages/mainpage/me.jpg";
+import me from "../me.jpg";
 import BetterText from "../helpers/BetterText";
 
 function ContactButtons() {
     const discordClick = () => { console.log("TODO discord link") };
     const gmailClick = () => { console.log("TODO gmail link") };
     const githubClick = () => { console.log("TODO github link") };
+    const resumeClick = () => { console.log("TODO resume link") };
 
     return (
         <Container style={{
@@ -50,8 +51,16 @@ function ContactButtons() {
             <div style={{ width: 100 }} />
 
             {/* resume button */}
-            <BetterButton initColor={"transparent"} hoverColor={colors.grays.campfire} border={"red"} >
+            <BetterButton
+                initColor={colors.grays.darkgray}
+                radius={100}
+                hoverColor={colors.grays.campfire}
+                border={`2px solid ${colors.primaries.green}`}
+                onClick={resumeClick}
+            >
+                <div style={{ width: 20 }} />
                 <BetterText color={colors.grays.offwhite} >Resume</BetterText>
+                <div style={{ width: 20 }} />
             </BetterButton>
         </Container>
     );
@@ -74,17 +83,11 @@ export default function IntroElement() {
                 height: 200,
                 width: 400
             }} >
-                <FormText style={{
-                    fontFamily: "Roboto Mono",
-                    fontSize: 35,
-                    color: colors.grays.offwhite
-                }} >Hi, I'm Noah Shaw!</FormText>
+                <BetterText size={35} color={colors.grays.offwhite}>Hi, I'm Noah Shaw!</BetterText>
                 <Container style={{ height: 15 }} />
-                <FormText style={{
-                    fontFamily: "Roboto Mono",
-                    fontSize: 20,
-                    color: colors.grays.offwhite
-                }} >I am a full-stack developer based in the United States.</FormText>
+                <BetterText size={20} color={colors.grays.offwhite}>
+                    I am a full-stack developer based in the United States.
+                </BetterText>
                 <Container style={{ height: 15 }} />
                 <ContactButtons/>
             </Container>
