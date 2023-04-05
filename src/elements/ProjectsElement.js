@@ -3,15 +3,28 @@ import {colors} from "../helpers/Colors";
 import {projectElementsInfo} from "./ProjectElementsInfo";
 import BetterText from "../helpers/BetterText";
 import {useEffect, useState} from "react";
+import GradientText from "../helpers/GradientText";
 
 function ProjectsSubElement(props) {
     return (
         <Container style={{
+            // dimensions
+            width: '100%',
+            maxWidth: 600,
+            padding: 10,
+            margin: 20,
+
             // setup display
             display: "flex",
-            flexDirection: "column"
+            flexDirection: "column",
+
+            // border
+            borderColor: colors.grays.campfire,
+            borderRadius: 20,
+            borderStyle: "solid",
         }}>
-            <BetterText>{props.element.name}</BetterText>
+            <GradientText gradient={`linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})`}>{props.element.name}</GradientText>
+            <div style={{ height: 10 }} />
             <BetterText>{props.element.description}</BetterText>
         </Container>
     );
