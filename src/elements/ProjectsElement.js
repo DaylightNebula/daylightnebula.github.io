@@ -1,15 +1,27 @@
-import {Container, FormText} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import {colors} from "../helpers/Colors";
 import {projectElementsInfo} from "./ProjectElementsInfo";
 import BetterText from "../helpers/BetterText";
 import {useEffect, useState} from "react";
 import GradientText from "../helpers/GradientText";
-import BetterButton from "../helpers/BetterButton";
+
+function ProjectDescription(props) {
+    console.log(`Descrition: ${props.project.description}`)
+    return (
+        <Container style={{ margin: 10 }} >
+            <BetterText color={colors.grays.offwhite} size={15} >{props.project.hover}</BetterText>
+        </Container>
+    );
+}
 
 function ProjectHoverable(props) {
     const [isHovering, setIsHovering] = useState();
-    const handleMouseOver = () => setIsHovering(true);
-    const handleMouseOut = () => setIsHovering(false);
+    const handleMouseOver = () => {
+        setIsHovering(true)
+    };
+    const handleMouseOut = () => {
+        setIsHovering(false)
+    };
 
     return (
         <Container
@@ -22,14 +34,15 @@ function ProjectHoverable(props) {
                 paddingLeft: 15,
 
                 // border
-                borderRadius: 100,
+                borderRadius: 25,
 
                 // center content
                 display: "flex",
-                justifyContent: "center",
+                flexDirection:"column",
                 alignItems: "center"
             }}
         >
+            {/* title */}
             <BetterText
                 size={20}
                 color={isHovering ? colors.grays.offwhite : colors.primaries.purple}
@@ -37,6 +50,11 @@ function ProjectHoverable(props) {
             >
                 {props.project.name}
             </BetterText>
+
+            {/* if user is hovering, draw description, tech, and link button */}
+            {
+                isHovering ? <ProjectDescription project={props.project} /> : null
+            }
         </Container>
     );
 }
@@ -58,6 +76,9 @@ function ProjectsSubElement(props) {
             borderColor: colors.grays.campfire,
             borderRadius: 20,
             borderStyle: "solid",
+
+            // extra effects
+            boxShadow: `0 5px 2px rgba(0, 0, 0, 0.1)`
         }}>
             {/* fancy title */}
             <Container style={{ display: "flex", justifyContent: "center", alignItems: "center" }} >

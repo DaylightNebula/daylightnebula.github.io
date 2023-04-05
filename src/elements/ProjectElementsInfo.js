@@ -13,12 +13,19 @@ export const projectElementsInfo = [
             {
                 name: "DaylinMicroservices",
                 hover: "A basic API to simplify the process of making microservices using Ktor and Consul.",
-                url: "TODO"
+                url: "TODO",
+                icons: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/640px-Kotlin_Icon_2021.svg.png",
+                ]
             },
             {
                 name: "DaylinMicroservices-Waterfall",
                 hover: "Three microservices for making a basic Minecraft server network with plugins for Waterfall and Spigot, as well as, a microservice to automatically manage Spigot server nodes.",
-                url: "TODO"
+                url: "TODO",
+                icons: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/640px-Kotlin_Icon_2021.svg.png",
+                    "https://avatars.githubusercontent.com/u/7608950?s=200&v=4"
+                ]
             }
         ]
     },
@@ -29,12 +36,20 @@ export const projectElementsInfo = [
             {
                 name: "DaylinMicroservices-Waterfall",
                 hover: "Three microservices for making a basic Minecraft server network with plugins for Waterfall and Spigot, as well as, a microservice to automatically manage Spigot server nodes.",
-                url: "TODO"
+                url: "TODO",
+                icons: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/640px-Kotlin_Icon_2021.svg.png",
+                    "https://avatars.githubusercontent.com/u/7608950?s=200&v=4"
+                ]
             },
             {
                 name: "PaperRPGToolkit",
                 hover: "A simple toolkit to make basic ",
-                url: "TODO"
+                url: "TODO",
+                icons: [
+                    "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/640px-Kotlin_Icon_2021.svg.png",
+                    "https://avatars.githubusercontent.com/u/7608950?s=200&v=4"
+                ]
             }
         ]
     },
@@ -45,12 +60,16 @@ export const projectElementsInfo = [
             {
                 name: "AbstractMesh",
                 hover: "An experiment to generate 3D mesh with bezier curves.",
-                url: "TODO"
+                url: "TODO",
+                icons: [
+                ]
             },
             {
                 name: "Project Chat",
                 hover: "An old project to make a social media app using React Native, GraphQL and MongoDB.",
-                url: "TODO"
+                url: "TODO",
+                icons: [
+                ]
             }
         ]
     }
