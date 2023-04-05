@@ -7,6 +7,7 @@ import me from "../me.jpg";
 import BetterText from "../helpers/BetterText";
 
 function ContactButtons() {
+    // TODO links
     const discordClick = () => { console.log("TODO discord link") };
     const gmailClick = () => { console.log("TODO gmail link") };
     const githubClick = () => { console.log("TODO github link") };
@@ -69,7 +70,7 @@ function ContactButtons() {
 export default function IntroElement() {
     return (
         <Container style={{
-            height: '100vh',
+            minHeight: '100vh',
             background: colors.grays.darkgray,
             display: "flex",
             justifyContent: "center",
