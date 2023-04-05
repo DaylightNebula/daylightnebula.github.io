@@ -60,7 +60,7 @@ function ContactButtons() {
                 onClick={resumeClick}
             >
                 <div style={{ width: 20 }} />
-                <BetterText color={colors.grays.offwhite} >Resume</BetterText>
+                <BetterText cursor={"pointer"} color={colors.grays.offwhite} >Resume</BetterText>
                 <div style={{ width: 20 }} />
             </BetterButton>
         </Container>
