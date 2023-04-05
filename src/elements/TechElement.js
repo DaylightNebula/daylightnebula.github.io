@@ -8,13 +8,8 @@ export default function TechElement() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            background: colors.grays.offwhite
+            background: colors.grays.darkgray
         }} >
-            <FormText style={{
-                fontFamily: "Roboto Mono",
-                fontSize: 50,
-                color: colors.grays.darkgray
-            }} >TODO Tech</FormText>
         </Container>
     );
 }

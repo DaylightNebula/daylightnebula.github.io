@@ -14,9 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <IntroElement id={"intro"} />
-      <TechElement id={"tech"} />
       <ProjectsElement id={"projects"} />
-      <RepositoriesElement id={"repo"} />
+      <TechElement id={"tech"} />
+      {/*<RepositoriesElement id={"repo"} />*/}
       <Topbar/>
   </React.StrictMode>
 );
