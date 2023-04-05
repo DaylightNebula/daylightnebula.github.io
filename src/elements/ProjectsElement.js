@@ -4,6 +4,42 @@ import {projectElementsInfo} from "./ProjectElementsInfo";
 import BetterText from "../helpers/BetterText";
 import {useEffect, useState} from "react";
 import GradientText from "../helpers/GradientText";
+import BetterButton from "../helpers/BetterButton";
+
+function ProjectHoverable(props) {
+    const [isHovering, setIsHovering] = useState();
+    const handleMouseOver = () => setIsHovering(true);
+    const handleMouseOut = () => setIsHovering(false);
+
+    return (
+        <Container
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}
+            style={{
+                // style
+                background: isHovering ? `linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})` : "transparent",
+                padding: 5,
+                paddingLeft: 15,
+
+                // border
+                borderRadius: 100,
+
+                // center content
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }}
+        >
+            <BetterText
+                size={20}
+                color={isHovering ? colors.grays.offwhite : colors.primaries.purple}
+                padding={5}
+            >
+                {props.project.name}
+            </BetterText>
+        </Container>
+    );
+}
 
 function ProjectsSubElement(props) {
     return (
@@ -11,7 +47,7 @@ function ProjectsSubElement(props) {
             // dimensions
             width: '100%',
             maxWidth: 600,
-            padding: 10,
+            padding: 15,
             margin: 20,
 
             // setup display
@@ -23,9 +59,20 @@ function ProjectsSubElement(props) {
             borderRadius: 20,
             borderStyle: "solid",
         }}>
-            <GradientText gradient={`linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})`}>{props.element.name}</GradientText>
+            {/* fancy title */}
+            <Container style={{ display: "flex", justifyContent: "center", alignItems: "center" }} >
+                <GradientText
+                    gradient={`linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})`}
+                >{props.element.name}</GradientText>
+            </Container>
             <div style={{ height: 10 }} />
+
+            {/* project description */}
             <BetterText>{props.element.description}</BetterText>
+            <div style={{ height: 10 }}/>
+
+            {/* add projects list */}
+            {props.element.projects.map(project => <ProjectHoverable project={project} />)}
         </Container>
     );
 }
