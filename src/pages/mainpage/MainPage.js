@@ -3,7 +3,6 @@ import {Button, Container, FormText, Image} from "react-bootstrap";
 import {colors} from "../../helpers/Colors";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
-import './MainPage.css';
 
 function ContactButtons() {
     const discordClick = () => { console.log("TODO discord link") };
@@ -16,7 +15,7 @@ function ContactButtons() {
             flexDirection: "row"
         }} >
             <Button style={{
-                background: colors.grays.darkgray,
+                background: "transparent",
                 border: "none",
                 width: 50,
                 height: 50,
@@ -24,9 +23,6 @@ function ContactButtons() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                '&:hover': {
-                    background: colors.grays.blue
-                }
             }} className="contact-button"  onClick={discordClick} >
                 <FontAwesomeIcon icon={faDiscord} style={{
                     width: 40,
@@ -36,7 +32,7 @@ function ContactButtons() {
             </Button>
 
             <Button style={{
-                background: colors.grays.darkgray,
+                background: "transparent",
                 border: "none",
                 width: 50,
                 height: 50,
@@ -53,7 +49,7 @@ function ContactButtons() {
             </Button>
 
             <Button style={{
-                background: colors.grays.darkgray,
+                background: "transparent",
                 border: "none",
                 width: 50,
                 height: 50,
