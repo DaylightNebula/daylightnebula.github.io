@@ -6,6 +6,9 @@ import TechElement from "./elements/TechElement";
 import ProjectsElement from "./elements/ProjectsElement";
 import RepositoriesElement from "./elements/RepositoriesElement";
 import Topbar from "./elements/Topbar";
+import fetchGithubData from "./github/GithubInfo";
+
+fetchGithubData();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
