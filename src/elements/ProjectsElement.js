@@ -1,19 +1,65 @@
-import {Container} from "react-bootstrap";
+import {Container, Image} from "react-bootstrap";
 import {colors} from "../helpers/Colors";
 import {projectElementsInfo} from "./ProjectElementsInfo";
 import BetterText from "../helpers/BetterText";
 import {useEffect, useState} from "react";
 import GradientText from "../helpers/GradientText";
+import BetterButton from "../helpers/BetterButton";
+import {BiLinkExternal} from "react-icons/bi";
 
 function ProjectDescription(props) {
+    // function to handle git hub link button
+    const handleGithubLink = () => {
+        console.log("TODO send to github")
+    };
+
     return (
-        <Container style={{ margin: 10 }} >
-            <BetterText color={colors.grays.offwhite} size={15} >{props.project.hover}</BetterText>
+        <Container style={{ margin: 0, width: '100%' }} >
+            {/* description text */}
+            <Container style={{ display: "flex", justifyContent: "center" }} >
+                <BetterText color={colors.grays.offwhite} size={15} >{props.project.hover}</BetterText>
+            </Container>
+
+            <div style={{ height: 10 }} />
+
+            {/* icons and link */}
+            <Container style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                padding: 10
+            }} >
+                <Container>
+                    {
+                        props.project.icons.map(icon => <Image src={icon} style={{ height: 40 }} />)
+                    }
+                </Container>
+                <BetterButton
+                    initColor={"#FFFFFF22"}
+                    hoverColor={"#FFFFFF66"}
+                    radius={100}
+                    onClick={handleGithubLink}
+                >
+                    <Container style={{
+                        padding: 10,
+
+                        // display row and center
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center"
+                    }} >
+                        <BetterText cursor={"pointer"} color={colors.grays.offwhite} size={15} >GitHub</BetterText>
+                        <div style={{ width: 10 }} />
+                        <BiLinkExternal style={{ color: colors.grays.offwhite }} />
+                    </Container>
+                </BetterButton>
+            </Container>
         </Container>
     );
 }
 
 function ProjectHoverable(props) {
+    // track hover state
     const [isHovering, setIsHovering] = useState();
     const handleMouseOver = () => {
         setIsHovering(true)
@@ -122,7 +168,7 @@ export default function ProjectsElement() {
             <Container style={{
                 // setup display for two elements
                 display: "flex",
-                flexDirection: aspectRatio > 1.0 ? "row" : "column"
+                flexDirection: aspectRatio > 1.2 ? "row" : "column"
             }}>
                 <ProjectsSubElement element={projectElementsInfo[0]} />
                 <ProjectsSubElement element={projectElementsInfo[1]} />
@@ -132,7 +178,7 @@ export default function ProjectsElement() {
             <Container style={{
                 // setup display for two elements
                 display: "flex",
-                flexDirection: aspectRatio > 1.0 ? "row" : "column"
+                flexDirection: aspectRatio > 1.2 ? "row" : "column"
             }}>
                 <ProjectsSubElement element={projectElementsInfo[2]} />
                 <ProjectsSubElement element={projectElementsInfo[3]} />

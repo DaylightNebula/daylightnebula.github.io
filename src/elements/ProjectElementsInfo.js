@@ -16,6 +16,7 @@ export const projectElementsInfo = [
                 url: "TODO",
                 icons: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/640px-Kotlin_Icon_2021.svg.png",
+                    "https://icons-for-free.com/download-icon-hashicorp+consul-1330289840848834880_512.png"
                 ]
             },
             {
@@ -24,7 +25,8 @@ export const projectElementsInfo = [
                 url: "TODO",
                 icons: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/640px-Kotlin_Icon_2021.svg.png",
-                    "https://avatars.githubusercontent.com/u/7608950?s=200&v=4"
+                    "https://avatars.githubusercontent.com/u/7608950?s=200&v=4",
+                    "https://proxy.spigotmc.org/0e97ad6ff9f812673c4274b355fb5aa8289bc6e9?url=http%3A%2F%2Fi.imgur.com%2FMAg2r2J.png",
                 ]
             }
         ]
@@ -39,7 +41,8 @@ export const projectElementsInfo = [
                 url: "TODO",
                 icons: [
                     "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Kotlin_Icon_2021.svg/640px-Kotlin_Icon_2021.svg.png",
-                    "https://avatars.githubusercontent.com/u/7608950?s=200&v=4"
+                    "https://avatars.githubusercontent.com/u/7608950?s=200&v=4",
+                    "https://proxy.spigotmc.org/0e97ad6ff9f812673c4274b355fb5aa8289bc6e9?url=http%3A%2F%2Fi.imgur.com%2FMAg2r2J.png"
                 ]
             },
             {
