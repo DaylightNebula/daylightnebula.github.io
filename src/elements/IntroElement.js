@@ -88,7 +88,7 @@ export default function IntroElement() {
                 <BetterText size={35} color={colors.grays.offwhite}>Hi, I'm Noah Shaw!</BetterText>
                 <Container style={{ height: 15 }} />
                 <BetterText size={20} color={colors.grays.offwhite}>
-                    I am a full-stack developer based in the United States.
+                    I am a passionate and motivated full-stack software engineer.
                 </BetterText>
                 <Container style={{ height: 15 }} />
                 <ContactButtons/>
