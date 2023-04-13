@@ -35,7 +35,8 @@ jobs:
           CI: false
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
-        path: /build/
+        with:
+          path: /build/
 #      - name: Deploy 🚀
 #        uses: JamesIves/github-pages-deploy-action@v4
 #        with:
