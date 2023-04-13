@@ -33,6 +33,8 @@ jobs:
           npm run build
         env:
           CI: false
+      - name: List
+        run: ls
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
