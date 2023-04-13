@@ -84,13 +84,26 @@ function ProjectHoverable(props) {
         setIsHovering(false)
     };
 
+    // track open props
+    const [isLocked, setLock] = useState(false);
+    const click = () => {
+        if (!matchMedia('(pointer:fine)').matches) {
+            if (isLocked) {
+                setLock(false)
+                setIsHovering(false)
+            } else
+                setLock(true)
+        }
+    };
+
     return (
         <Container
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
+            onClick={click}
             style={{
                 // style
-                background: isHovering ? `linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})` : "transparent",
+                background: isHovering || isLocked ? `linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})` : "transparent",
                 padding: 5,
                 paddingLeft: 15,
 
@@ -106,7 +119,7 @@ function ProjectHoverable(props) {
             {/* title */}
             <BetterText
                 size={20}
-                color={isHovering ? colors.grays.offwhite : colors.primaries.purple}
+                color={isHovering || isLocked ? colors.grays.offwhite : colors.primaries.purple}
                 padding={5}
             >
                 {props.project.name}
@@ -114,7 +127,7 @@ function ProjectHoverable(props) {
 
             {/* if user is hovering, draw description, tech, and link button */}
             {
-                isHovering ? <ProjectDescription project={props.project} /> : null
+                isHovering || isLocked ? <ProjectDescription project={props.project} /> : null
             }
         </Container>
     );
@@ -127,7 +140,7 @@ function ProjectsSubElement(props) {
             width: '100%',
             maxWidth: 600,
             padding: 15,
-            margin: 20,
+            margin: 10,
 
             // setup display
             display: "flex",
@@ -154,7 +167,13 @@ function ProjectsSubElement(props) {
             <div style={{ height: 10 }}/>
 
             {/* add projects list */}
-            {props.element.projects.map(project => <ProjectHoverable project={project} />)}
+            {props.element.projects.map(project =>
+                <Container style={{
+                    paddingBottom: 10
+                }} >
+                    <ProjectHoverable project={project} />
+                </Container>
+            )}
         </Container>
     );
 }
