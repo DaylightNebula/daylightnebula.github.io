@@ -1,17 +1,18 @@
 import {Button, Col, Container, FormText, Image, Row} from "react-bootstrap";
 import {colors} from "../helpers/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faDiscord, faGithub, faGoogle} from "@fortawesome/free-brands-svg-icons";
+import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
 import BetterButton from "../helpers/BetterButton";
 import me from "../me.jpg";
 import BetterText from "../helpers/BetterText";
+import { HiOutlineMail } from "react-icons/hi";
+import {links} from "../helpers/links";
 
 function ContactButtons() {
-    // TODO links
-    const discordClick = () => { console.log("TODO discord link") };
-    const gmailClick = () => { console.log("TODO gmail link") };
-    const githubClick = () => { console.log("TODO github link") };
-    const resumeClick = () => { console.log("TODO resume link") };
+    const discordClick = () => { window.open(links.DISCORD_LINK) };
+    const gmailClick = () => { window.open(links.EMAIL_LINK) };
+    const githubClick = () => { window.open(links.GITHUB_LINK) };
+    const resumeClick = () => { window.open(links.RESUME_LINK) };
 
     return (
         <Container style={{
@@ -29,9 +30,9 @@ function ContactButtons() {
 
             <div style={{ width: 5 }} />
 
-            {/* gmail button */}
-            <BetterButton initColor="transparent" hoverColor={colors.grays.campfire} onClick={gmailClick} >
-                <FontAwesomeIcon icon={faGoogle} style={{
+            {/* git hub button */}
+            <BetterButton initColor="transparent" hoverColor={colors.grays.campfire}  onClick={githubClick} >
+                <FontAwesomeIcon icon={faGithub} style={{
                     width: 40,
                     height: 40,
                     color: colors.grays.offwhite
@@ -40,9 +41,9 @@ function ContactButtons() {
 
             <div style={{ width: 5 }} />
 
-            {/* git hub button */}
-            <BetterButton initColor="transparent" hoverColor={colors.grays.campfire}  onClick={githubClick} >
-                <FontAwesomeIcon icon={faGithub} style={{
+            {/* gmail button */}
+            <BetterButton initColor="transparent" hoverColor={colors.grays.campfire} onClick={gmailClick} >
+                <HiOutlineMail style={{
                     width: 40,
                     height: 40,
                     color: colors.grays.offwhite
