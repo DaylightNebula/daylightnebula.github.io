@@ -47,7 +47,7 @@ function Topbar() {
             <div style={{ width: 10 }} />
             <TopbarElement scrollMult={1} isHighlighted={scroll === 1} >Projects</TopbarElement>
             <div style={{ width: 10 }} />
-            <TopbarElement scrollMult={2} isHighlighted={scroll === 2} >Technologies</TopbarElement>
+            <TopbarElement scrollMult={2} isHighlighted={scroll === 2} >Stats</TopbarElement>
             {/*<div style={{ width: 10 }} />*/}
             {/*<TopbarElement scrollMult={3} isHighlighted={scroll === 3} >Releases</TopbarElement>*/}
         </Container>

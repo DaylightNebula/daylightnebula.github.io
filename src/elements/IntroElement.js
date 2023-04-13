@@ -1,4 +1,4 @@
-import {Button, Col, Container, FormText, Image, Row} from "react-bootstrap";
+import {Container, Image } from "react-bootstrap";
 import {colors} from "../helpers/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faGithub } from "@fortawesome/free-brands-svg-icons";
@@ -6,6 +6,7 @@ import BetterButton from "../helpers/BetterButton";
 import me from "../me.jpg";
 import BetterText from "../helpers/BetterText";
 import { HiOutlineMail } from "react-icons/hi";
+import { BsDownload } from "react-icons/bs";
 import {links} from "../helpers/links";
 
 function ContactButtons() {
@@ -62,6 +63,12 @@ function ContactButtons() {
             >
                 <div style={{ width: 20 }} />
                 <BetterText cursor={"pointer"} color={colors.grays.offwhite} >Resume</BetterText>
+                <div style={{ width: 10 }} />
+                <BsDownload style={{
+                    width: 20,
+                    height: 20,
+                    color: colors.grays.offwhite
+                }} />
                 <div style={{ width: 20 }} />
             </BetterButton>
         </Container>

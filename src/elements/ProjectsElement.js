@@ -2,8 +2,8 @@ import {Container, Image} from "react-bootstrap";
 import {colors} from "../helpers/Colors";
 import {projectElementsInfo} from "./ProjectElementsInfo";
 import BetterText from "../helpers/BetterText";
-import {useEffect, useState} from "react";
 import GradientText from "../helpers/GradientText";
+import {useEffect, useState} from "react";
 import BetterButton from "../helpers/BetterButton";
 import {BiLinkExternal} from "react-icons/bi";
 
@@ -200,6 +200,9 @@ export default function ProjectsElement() {
             alignItems: "center",
             flexDirection: "column"
         }} >
+            <GradientText gradient={`linear-gradient(to right, ${colors.primaries.green}, ${colors.primaries.purple})`} size={50} >Projects</GradientText>
+            <div style={{ height: 30 }} />
+
             <Container style={{
                 // setup display for two elements
                 display: "flex",

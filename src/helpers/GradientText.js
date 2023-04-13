@@ -9,6 +9,6 @@ export default function GradientText(props) {
         padding: props.padding ? props.padding : 0,
         background: props.gradient ? props.gradient : "blue",
         "-webkit-background-clip": "text",
-        color: "transparent"
+        color: "transparent",
     }} >{props.children}</FormText>);
 }
