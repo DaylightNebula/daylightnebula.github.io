@@ -38,7 +38,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: /build/
+          path: build/
 #      - name: Deploy 🚀
 #        uses: JamesIves/github-pages-deploy-action@v4
 #        with:
