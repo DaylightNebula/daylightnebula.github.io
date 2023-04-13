@@ -33,11 +33,9 @@ jobs:
           npm run build
         env:
           CI: false
-      - name: Copy
-        run: |
-          cp -R /build ./_site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        path: /build/
 #      - name: Deploy 🚀
 #        uses: JamesIves/github-pages-deploy-action@v4
 #        with:
