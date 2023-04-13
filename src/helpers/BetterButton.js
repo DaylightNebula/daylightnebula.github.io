@@ -19,7 +19,10 @@ export default function BetterButton(props) {
                 /* center content */
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center"
+                alignItems: "center",
+
+                /* shadow */
+                boxShadow: props.boxShadow ? props.boxShadow : ``
             }}
             onClick={props.onClick}
             onMouseOver={handleMouseOver}

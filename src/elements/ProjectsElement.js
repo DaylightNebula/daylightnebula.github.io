@@ -10,13 +10,13 @@ import {BiLinkExternal} from "react-icons/bi";
 function ProjectDescription(props) {
     // function to handle git hub link button
     const handleGithubLink = () => {
-        console.log("TODO send to github")
+        window.open(props.project.url)
     };
 
     return (
         <Container style={{ margin: 0, width: '100%' }} >
             {/* description text */}
-            <Container style={{ display: "flex", justifyContent: "center" }} >
+            <Container style={{ display: "flex", justifyContent: "center", padding: 20 }} >
                 <BetterText color={colors.grays.offwhite} size={15} >{props.project.hover}</BetterText>
             </Container>
 
@@ -27,18 +27,34 @@ function ProjectDescription(props) {
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                padding: 10
+                padding: 20
             }} >
-                <Container>
+                <Container style={{
+                    // center
+                    display: "flex",
+                    flexDirection: "center",
+                    justifyContent: "center",
+                    alignItems: "center",
+
+                    // background
+                    background: colors.grays.darkgray,
+                    padding: 15,
+                    borderRadius: 10,
+
+                    // internal shadow
+                    boxShadow: `0 5px 2px rgba(0, 0, 0, 0.1)`
+                }} >
                     {
-                        props.project.icons.map(icon => <Image src={icon} style={{ height: 40 }} />)
+                        props.project.icons.map(icon => <Image src={icon} style={{ height: 40, paddingRight: 5 }} />)
                     }
                 </Container>
+
                 <BetterButton
                     initColor={"#FFFFFF22"}
                     hoverColor={"#FFFFFF66"}
                     radius={100}
                     onClick={handleGithubLink}
+                    boxShadow={`0 5px 2px rgba(0, 0, 0, 0.1)`}
                 >
                     <Container style={{
                         padding: 10,
@@ -181,7 +197,7 @@ export default function ProjectsElement() {
                 flexDirection: aspectRatio > 1.2 ? "row" : "column"
             }}>
                 <ProjectsSubElement element={projectElementsInfo[2]} />
-                <ProjectsSubElement element={projectElementsInfo[3]} />
+                {/*<ProjectsSubElement element={projectElementsInfo[3]} />*/}
             </Container>
         </Container>
     );
