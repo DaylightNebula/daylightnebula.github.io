@@ -6,5 +6,6 @@ import starlight from "@astrojs/starlight";
 export default defineConfig({
   integrations: [starlight({
     title: "Noah Shaw"
-  })]
+  })],
+  site: 'https://daylightnebula.github.io'
 });
