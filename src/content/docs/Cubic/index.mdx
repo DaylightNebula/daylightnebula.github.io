@@ -1,0 +1,42 @@
+---
+title: Cubic
+---
+import { LinkCard, Card, Icon, CardGrid } from '@astrojs/starlight/components';
+
+Cubic is a work in progress mod designed to expand the possibilities of using Minecraft as a game engine by allowing mods to use custom servers (or even custom server implementations) as worlds to effectively "replace" Minecrafts core.
+Since Minecraft is server authoritative, this means we can replace large amounts of Minecrafts core logic with our own logic.
+
+Here are some examples of what may now be possible:
+ - Abandon the 20 ticks per second limit imposed by Mojang.
+ - Replace inefficient parts of Mojangs code like the light engine, for example (Minecraft does block light calculations on the server for some reason).
+ - Make how water flows more realistic.
+ - Use more efficient server implementations to save on memory and CPU resources.
+ - Custom server implementations can have custom physics that would allow for things like custom vehicles, for example, without having to hack the Mojang physics engine.
+ - We can write our open modding APIs from scratch and not have to abide by the mess that Mojang blesses us with.
+ - Import custom assets at runtime, so if a player changes the game they are playing, we do not need to restart the client, we can just load a different set of assets.
+ - Outside of the Cubic mod itself, no additional client modding would be necessary as Cubic could load any assets or resources needed by the servers.
+ - These games using custom server implementations would not need Mojang mappings anymore.
+
+## What we have
+Right now, Cubic only allows players to create a new game from a template that they have already copied into cubics templates folder.  When the player starts a game, the server is started, after which the player joins the server.
+The server and client both have a HTTP server that they use to communicate with each other.  They will occasionally ping each other, and when a game server starts, it tells the clients HTTP server that it is loaded and ready for the player to connect.
+
+## What we could do
+### Custom Game Mode via Custom Server Implementations
+Minecraft is not set up for lots of different types of games.  
+
+Some examples of this are:
+ - A city builder would be difficult to make as stock Minecraft can only select blocks within a few meters of the player which would make managing a large city difficult.
+ - A circuit builder would be difficult as stock Minecraft both capped to 20 updates per second (which could make circuits agonizingly slow), and not designed to have a signal spread more than 16 blocks in the same tick.
+ - A vehicle builder would be difficult as stock Minecraft physics are not setup to, for example, handle when a vehicle impacts with the ground or have players walk around inside those vehicles while moving.
+
+Custom server implementations can replace, rewrite or simply be put together in ways to get around all of these issues.
+
+### Easy to use mod API that is less intrusive
+No longer would we need to rely on modifying the games source code, or use Mojangs mess to create something like a new item or entity.  We could create our own simple, easy to use API that requires none of Mojangs methods, bloat or mappings.\
+
+Since the game servers would no longer need to modify client source code to add custom features or inject themselves into the client, we can create a safer, less intrusive system for our players.\
+
+Updating mods would also be easier as this mod API would be platform agnostic so that when Mojang updates, only the API would need an update, not the mods.
+
+<LinkCard title="GitHub" href="https://github.com/DaylightNebula/Cubic.git" />

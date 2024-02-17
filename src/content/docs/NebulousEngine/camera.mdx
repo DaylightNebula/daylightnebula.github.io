@@ -1,0 +1,15 @@
+---
+title: Nebulous Engine - Camera
+---
+The cameras built into the Bevy engine are amazing but lacking in some ways.  One of those ways is rendering to `Image`s, which in Bevy is quite complex, is simplified by using an `ImageCamera` component with the `BetterCameraPlugin` plugin.
+Applying the `ImageCamera` to a Bevy camera will set it up so that the camera will render to a given `Handle` to a `Image`.
+
+Heres how you can use it.
+```rust
+let image_camera = ImageCamera::default();
+image_camera = /* Some Handle<Image> instance */
+commands.spawn((
+    CameraBundle::default(),
+    image_camera
+));
+```

@@ -1,0 +1,49 @@
+---
+title: Meld
+---
+import { LinkCard, Card, Icon, CardGrid } from '@astrojs/starlight/components';
+
+A bare-bones, light-weight and cross-platform Minecraft server implementation.  Meld itself doesn't even provide the players with the ability to login to a world.  That is all provided through additional modules that are loaded by Meld.
+
+Meld simply serves as a network interface and event system for both Java and Bedrock Minecraft.
+
+## Modules
+Meld uses modules to provide functionality to the servers.  These modules are loaded as startup and work very similarly to Spigot plugins, except with more low-level control over the server.
+
+To create a module, you must have a class that is used to create, enable and disable modules.  This serves as the entrypoint for a module.  To do this, you must have a class that implements `MeldModule` as shown below.
+
+```kotlin
+class ExampleModule: MeldModule {
+    override fun onEnable() {}
+    override fun onDisable() {}
+}
+```
+
+You created your first module, amazing!.  But the Meld Server does not know what to do with it.  To tell the server, you need to create a file named `module.json` in the resources directory of your module.  This JSON file needs to specify the path to the main file created above as shown below.
+
+```json
+{
+    "main": "com.example.ExampleModule"
+}
+```
+
+This file tells Meld to load ExampleModule as the modules main file.
+
+### Standard Modules
+
+There are five standard modules that can be used with Meld to add basic functionality to your server.  Heres a list of them and what they do:
+| Module      | Description |
+|  :-:        |-------------|
+| Login       | Adds the ability to players to login to your server. |
+| Entities    | Adds the ability to spawn and de-spawn entities to your server. |
+| World       | Adds standard world functionality to your server. |
+| Inventories | Adds standard inventory functionality to your server. |
+| Player      | Adds standard player functionality to your server. |
+
+## Features For Creating Modules
+<CardGrid>
+    <LinkCard title="Events" href="/meld/events" />
+    <LinkCard title="Packets" href="/meld/packets" />
+</CardGrid>
+
+<LinkCard title="GitHub" href="https://github.com/DaylightNebula/Meld.git" />

@@ -1,0 +1,124 @@
+.bg {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.intro-container {
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-height: 5em;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.name-display {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 700;
+    font-size: xx-large;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.name-display:hover {
+    cursor: default;
+}
+
+.me {
+    width: 5em;
+    height: 5em;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.me > img {
+    width: 5em;
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+}
+
+.resume-container {
+    display: flex;
+    height: 5em;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+}
+
+.resume {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 500;
+    font-size: large;
+    color: white;
+
+    padding: 5px;
+    border: 0.25em solid #FFF;
+    border-radius: 10px;
+}
+
+.resume:hover {
+    cursor: pointer;
+}
+
+.icon {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon:hover {
+    background-color: #333;
+}
+
+.bottom-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 300;
+    font-size: medium;
+    width: 25em;
+    color: white;
+    text-align: center;
+}
+
+.projects-group {
+    position: absolute;
+    top: 1.5em;
+    right: 1.5em;
+}
+
+.projects-group:hover .project-hover {
+    visibility: visible;
+    outline-width: 2px;
+}
+
+.projects-header {
+    position: relative;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    font-weight: 600;
+    color: white;
+    text-align: end;
+    cursor: pointer;
+
+    border: 0.25em solid #FFF;
+    border-radius: 10px;
+    padding: 0.5em;
+}

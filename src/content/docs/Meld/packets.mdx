@@ -1,0 +1,68 @@
+---
+title: Meld - Packets
+---
+Since all functionality is provided through modules, those modules must create and handle packets.  This system allows modules to listener for those packets when the server receives them, as well as, create and register Java packets (all Bedrock packets are provided through a library used by Meld).
+
+## Creating a Java Packet
+To create a Java packet by doing this:
+
+```kotlin
+class JavaTeleportEntityPacket(
+    var entityID: Int = 0,
+    var position: Vector3f = Vector3f.ZERO,
+    var rotation: Vector2f = Vector2f.ZERO,
+    var onGround: Boolean = false
+): JavaPacket {
+    // the ID of this packet when it is sent out
+    override val id: Int = 0x6D
+
+    override fun decode(reader: AbstractReader) {
+        // read evertyhing from a AbstractReader in the order provided by the protocol
+        entityID = reader.readVarInt()
+    }
+
+    override fun encode(writer: ByteWriter) {
+        // write everything into ByteWriter in the order required by the protocol
+        writer.writeVarInt(entityID)
+        writer.writeDouble(position.x.toDouble())
+        writer.writeDouble(position.y.toDouble())
+        writer.writeDouble(position.z.toDouble())
+        writer.writeByte(rotation.x.toAngleByte())
+        writer.writeByte(rotation.y.toAngleByte())
+        writer.writeBoolean(onGround)
+    }
+}
+```
+
+## Packet Bundle
+`PacketBundle` is the name used for packet listeners and they operate in a similar fashion to `EventListener`s.  However, bundles are also in charge of registering java packets by doing the following.
+
+Heres how you can create a bundle:
+```kotlin
+class PlayerBundle: PacketBundle {
+    // register all the java packets as so
+    override fun registerJavaPackets(): HashMap<Pair<Int, JavaConnectionState>, () -> JavaPacket> =
+        javaPackets(
+            javaPacketID(0x15, JavaConnectionState.IN_GAME) to { JavaPlayKeepAlivePacket() },
+        )
+}
+```
+
+## Listening For Packets
+To listen for a packet, you need to create a function marked with the `@PacketHandler` annotation.  That function must take in a `JavaConnection` or a `BedrockConnection` as its first argument, and the packet you want to listen for as its second argument.  Heres an example:
+```kotlin
+@PacketHandler
+fun onPlayerCommand(connection: JavaConnection, packet: JavaPlayerCommandPacket) {
+    // start event
+    EventBus.callEvent(PlayerActionEvent(connection.player, packet.action, packet.entityID, packet.jumpBoost))
+
+    // handle base functions
+    when (packet.action) {
+        PlayerCommandAction.START_SNEAKING -> connection.player.replaceMetadataAtIndex(6, metaPose(6, Pose.SNEAKING))  //sneaking = true
+        PlayerCommandAction.STOP_SNEAKING -> connection.player.replaceMetadataAtIndex(6, metaPose(6, Pose.STANDING))  //.sneaking = false
+        PlayerCommandAction.START_SPRINTING -> connection.player.sprinting = true
+        PlayerCommandAction.STOP_SPRINTING -> connection.player.sprinting = false
+        else -> {}
+    }
+}
+```

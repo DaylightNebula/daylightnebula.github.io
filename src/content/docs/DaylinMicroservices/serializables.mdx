@@ -1,0 +1,91 @@
+---
+title: Daylin Microservices - Serializables
+---
+
+A great feature as part of Daylin Microservices is the serializables library.  This allows you to create schemas that JSON objects can follow, as well as, provides results that can be used in conjunction with these features.
+These are great as they can be used in conjunction with the microservice endpoints to ensure that all incoming and outgoing data is valid.
+
+## Creating a Schema
+Creating a schema is the central part of this library and doing so is easy.
+First you need to create an empty schema like this:
+```kotlin
+val mySchema = Schema()
+```
+
+Then inside you need to insert a string paired to a `SchemaElement`.  This tells the library that at the root of the JSON objects there should be a key "name" that corresponds with a string.
+```kotlin
+val mySchema = Schema(
+    "name" to SchemaElement.String(),
+    "age" to SchemaElement.Optional(SchemaElement.Number())
+)
+```
+
+The `SchemaElement` provides us with a view options for what we can place in their locations in JSON:
+ * `SchemaElement.Boolean()` - A simple boolean must be at the given location.
+ * `SchemaElement.Number()` - A number must be at the given location.
+ * `SchemaElement.String()` - A string must be at the given location.
+ * `SchemaElement.Data()` - A byte array must be at the given location.
+ * `SchemaElement.List(subElementKey: SchemaElement)` - A list must be at this location where the elements of the list must match the `SchemaElement` given as `subElementKey`.
+ * `SchemaElement.Array(subElementKey: SchemaElement, size: Int)` - An array of the given size must be at this location where the elements of the array must match the `SchemaElement` given as `subElementKey`.
+ * `SchemaElement.Object(schema: Schema)` - A JSON object must be at the given location that matches the given schema.
+ * `SchemaElement.Default(val schema: SchemaElement, val default: Any)` - An element may be given at this location that matches the `SchemaElement` given as `schema`.  But if that element is not present, the given default will be put in its place instead.
+ * `SchemaElement.Optional(val schema: SchemaElement)` - An element may be given at this location that matches the `SchemaElement` given as `schema.  If the element is not present, nothing will be put in its place.
+
+## Results
+Results are another core part of the serializables library.  These allow an object or an error to be returned that matches the given generic type.  You can use results like this.
+```kotlin
+val ok = Result.Ok(JSONObject())                                // With ok values, no generic type needs to be given as Kotlin is will usually just infer the type from the given input value.
+val error = Result.Error<JSONObject>("An error occured!")       // With errors a generic type must be given so that Kotlin knows what type the Result belongs too.
+assertTrue(ok.isOk())                                           // isOk() returns true if the object is a value.
+assertTrue(error.isError())                                     // isError() returns true if the object is an error.
+```
+
+To access the value stored in the `Result`, here are your options.
+```kotlin
+val result = // whatever result
+result.unwrap()                 // Returns the value contained IF the value is an ok value.
+result.error()                  // Returns the error contained IF the value is an error.
+result.unwrapOr(default)        // If this is an ok value, the value is returned, otherwise, the default is returned.
+result.unwrapOrError(error)     // If this is an error value, the contained error is returned, otherwise, the error given to this function is returned.
+val json = result.serialize()   // Turns this object into a JSON object.
+val result = json.toResult()    // Turns a JSONObject into a result.
+```
+
+## Validating an object
+To validate that a JSON object with a schema, you can simply call the validate function like this.
+```kotlin
+val json = // whatever JSON object
+val schema = // whatever Schema object to check the JSON against
+val result = json.validate(schema)
+```
+
+The `validate` function returns a result that may contain the given JSON object.  However, if the JSON object does not match the given `Schema`, an error result will be returned instead.
+
+## Using with an Endpoint
+Including this validation in endpoints is quite easy and can be integrated into your endpoints and will be checked against endpoints inputs.  You simply need to just pass your schema in the endpoint function.
+```kotlin
+val schema = // whatever Schema object to check the input against.
+val service = Microservice(
+    config,
+    hashMapOf(
+        "test" to (schema to { input ->
+            println("Input $input")
+        })
+    )
+)
+```
+
+## Including in a Project
+Add JitPack to your repositories list.
+```kotlin
+repositories {
+  maven("https://jitpack.io/")
+}
+```
+
+Then add this to your dependencies list.  
+```kotlin
+dependencies {
+  implementation("com.github.DaylightNebula.DaylinMicroservices:DaylinMicroservices-Serializables:0.4.4")
+}
+```

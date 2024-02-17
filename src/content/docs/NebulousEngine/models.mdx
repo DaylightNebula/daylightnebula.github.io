@@ -1,0 +1,59 @@
+---
+title: Nebulous Engine - Models
+---
+The Bevy game engine's methods for handling models and animations leaves much to be desired.  The goal of this module is to fix these problems.
+Both of these systems require the `GLTFPlugin` and `AnimatorPlugin` to be added to your project.
+
+## GLTF Utilities
+GLTF models are the standard, however, Bevy does not offer much control of these models.  The `GLTFModel` allows for easier animation, creates, offset and scale GLTF models.
+To create a GLTF component here are a few options.
+```rust
+// Create a GLTF model from a path.
+commands.spawn((
+    TransformBundle::default(),
+    VisibilityBundle::default(),
+    GLTFModel::from_str(&asset_server, /* path: &str */, /* offset: Vec3 */, /* scale: Vec3 */)
+));
+
+// Create a GLTF model from Bevy's Gltf struct
+commands.spawn((
+    TransformBundle::default(),
+    VisibilityBundle::default(),
+    GLTFModel::from_str(/* gltf: Gltf */, /* offset: Vec3 */, /* scale: Vec3 */)
+));
+```
+
+The `GLTFModel` component gives you a bunch tools for animation.
+Here are the provided functions.
+```rust
+let gltf = /* Some GLTFModel instance */
+gltf.set_next_animation(/* animation: &str */);             // Sets the next animation to be played
+gltf.set_current_animation(/* animation: &str */);          // Sets the current animation being played
+let current_anim = gltf.get_current_animation();            // Gets the current animation as an option
+let current_anim = gltf.get_current_animation_as_string();  // Gets the current animation as a string, defaulting to "none"
+let has_next_animation = gltf.has_next_animation();         // Returns true if this GLTFModel has a animation to play next
+let has_animation = gltf.has_animation();                   // Returns true if this GLTFModel has a animation currently playing
+let animations = gltf.get_animations();                     // Returns a vector containing all possible animations
+```
+
+## Animators
+Sometimes, you may wish to have better control over your animations.  The `Animator` component takes care of that when applied to the same entity as a `GLTFModel`.
+The `Animator` component uses a `StateMachine` to control the animations of a `GLTFModel`.  See the `Utils` page for more info.
+
+To create an `Animator` you can do this:
+```rust
+let animator = Animator {
+    handle: /* Handle<StateMachine> */,         // A handle to the state machine to use.
+    current_animation: /* Option<String> */,    // The current animation, you can usually set this to None when creating an Animator
+    triggers: /* Vec<String> */,                // The triggers currently being called on the animators state machine.  See the StateMachine documentation for more info.
+    values: /* HashMap<String, f32> */          // The values currently being applied to the animators state machine.  See the StateMachine documentation for more info.
+};
+```
+
+To interact with the `StateMachine` inside the `Animator`, you can use these functions:
+```rust
+let animator = /* An Animator instance */
+animator.trigger(/* trigger: String */)                     // Calls the given trigger in the StateMachine
+animator.set_value(/* name: String */, /* value: f32 */)    // Sets the value with the given name in the StateMachine
+animator.get_value(/* name: String */)                      // Gets the value with the given name in the StateMachine
+```

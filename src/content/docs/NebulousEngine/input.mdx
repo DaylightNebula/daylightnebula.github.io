@@ -1,0 +1,68 @@
+---
+title: Nebulous Engine - Input
+---
+
+Another area where Bevy lacks is its input system.  The `ConfigurableInputPlugin` allows you create entities with the `Inputs` component that takes a `InputDescription` that allows you to specify a string ID that relates to multiple different inputs from different input devices together to make input across devices easy.
+
+## Input Description
+The best place to start is by creating a `InputDescription`.  Heres how you could do that.
+```rust
+let description = InputDescription::create(|inputs: &mut InputDescription| {
+    inputs.insert("some id", vec![
+        /* Some Input Types */
+    ]);
+    /* Insert however many inputs you want */
+});
+```
+
+## Input Types
+`InputType`s are used tie one or more `InputElement`s together.
+There are two types of `InputType`s.  `SCALAR` which takes one input and reports inputs from 0 -> 1.  `AXIS` which takes two inputs and reports inputs from -1 -> 1.
+Heres how you can create them:
+```rust
+InputType::AXIS { positive: /* Some InputElement, provides the 0 -> 1 component of the input */, negative: /* Some InputElement, provides the 0 -> -1 component of the input */ },
+InputType::SCALAR { element: /* Some InputElement, provides the 0 -> 1 */ }
+```
+
+## Input Elements
+A `InputElement` allows you to accept inputs from input devices.  Inputs from devices are translated from 0 -> 1.  For example a keyboard key reports 0 when not pressed and 1 when pressed, or an trigger reports 0 -> 1, or a joystick axis reports -1 -> 1.
+
+This system has 4 different `InputElement` variants to choose from.  Heres a list:
+```rust
+InputElement::Keyboard { key: /* KeyCode */ }                               // Reports 0 -> 1, 0 when the key is not pressed, 1 when the key is pressed.
+InputElement::Mouse { mouse_button: /* MouseButton */ }                     // Does the same as the Keyboard variant but for a MouseButton.
+InputElement::GamepadButton { button: /* GamepadButtonType */ }             // Does the same as the above two variants but for a GamepadButtonType.
+InputElement::GamepadAxis { axis: /* GamepadAxisType */, mult: /* f32 */ }  // Reports -1 -> 1 times the multiplier from the given GamepadAxisType.
+```
+
+## Tying Everything Together
+Heres an example of how this all ties together and creates an entity with the `Inputs` component.
+
+```rust
+let description = InputDescription::create(|inputs| {
+    inputs.insert("vertical", vec![
+        InputType::AXIS { positive: InputElement::Keyboard { key: KeyCode::W }, negative: InputElement::Keyboard { key: KeyCode::S } },
+        InputType::SCALAR { element: InputElement::GamepadAxis { axis: GamepadAxisType::LeftStickY, mult: 1.0 } }
+    ]);
+    inputs.insert("horizontal", vec![
+        InputType::AXIS { positive: InputElement::Keyboard { key: KeyCode::D }, negative: InputElement::Keyboard { key: KeyCode::A } },
+        InputType::SCALAR { element: InputElement::GamepadAxis { axis: GamepadAxisType::LeftStickX, mult: 1.0 } }
+    ]);
+    inputs.insert("click", vec![
+        InputType::SCALAR { element: InputElement::Mouse { button: MouseButton::Left } },
+        InputType::SCALAR { element: InputElement::GamepadButton { button: GamepadButtonType::North } }
+    ]);
+});
+
+commands.spawn(Inputs::from_description(description));
+```
+
+## Interacting With A Inputs Instance
+To interact with a `Inputs` instance you can use these handy functions.
+```rust
+let inputs = Inputs::from_handle(/* Handle<InputDescription> */);       // Creates a new Inputs instance from a handle to a InputDescription.
+let inputs = Inputs::from_description(/* InputDescription */);          // Creates a new Inputs instance from a InputDescription.
+let inputs = Inputs::new(|inputs: &mut InputDescription| {});           // Creates a new Inputs instance using a InputDescription creator just like above.
+let value = inputs.get(/* name: &String */);                            // Returns a f32 of an input with the given name.
+inputs.set(/* name: String, value: f32 */);                             // Sets the input value at the given name to the given value.
+```

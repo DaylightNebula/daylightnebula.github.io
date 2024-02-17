@@ -1,0 +1,41 @@
+---
+title: Paper RPG Toolkit - NPCs
+---
+NPCs are useful characters for your game.  They can act as quest givers or characters to fill your world.
+
+## Creating an NPC
+To create an NPC you need to create a NPC description JSON file and place it in the `npcs` folder in the `PaperRPGToolkit` folder in your servers plugin directory.
+The file must contain the following:
+ - `id`: A string that serves as the ID for this entity.
+ - `name`: The name of your NPC that will be shown to players.
+ - `type`: The entity type for your NPC.  This must be a valid vanilla entity.
+
+Optionally, you should add a `on_click_action` which is an action that will be called when a player clicks on the NPC.
+
+### Example
+```json
+{
+  "id": "bob",
+  "name": "§dBob the builder",
+  "type": "VILLAGER",
+  "on_click_action": {
+    "type": "start_dialogue",
+    "id": "bobsApples",
+    "subid": "bobAskForApples"
+  }
+}
+```
+
+## Commands
+### Spawn
+`/spawnnpc <npc id> [<x> <y> <z>] [<pitch> <yaw>]`
+
+This command spawns an NPC with the given ID.
+Optionally, you may give a location to spawn the NPC, but if this is not set, your players location will be used instead.
+Optionally, you may give a pitch and yaw rotation for the NPC, but if this is not set, they will be given a default pitch and yaw.
+
+### Remove Nearby
+`/removenearbynpcs [<radius>]`
+
+This command removes nearby NPCs around your player in a radius.
+Optionally, you may specify a radius to remove all the NPCs in.  By default, this will be 1 block.

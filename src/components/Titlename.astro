@@ -1,0 +1,31 @@
+<div class = "name-display">Hi!  My name is Noah Shaw.</div>
+<script>
+    const ticksPerChar = 1;
+    let nametag = window.document.getElementsByClassName("name-display")[0] as HTMLDivElement;
+    let targetText = nametag.textContent!!;
+    nametag.textContent = "";
+    let tick = 0;
+    let waitTicks = 20;
+    let typeTicks = targetText.length * ticksPerChar;
+    let interval = setInterval(function() {
+        // do initial ticking like its about to starting typing
+        if (tick <= waitTicks) {
+            if (tick % 10 < 5) {
+                nametag.textContent = "|";
+            } else {
+                nametag.textContent = '';
+            }
+        }
+        // do typing
+        else if (tick <= typeTicks + waitTicks) {
+            let chars = (tick - waitTicks) / ticksPerChar;
+            nametag.textContent = targetText.slice(0, chars) + "|";
+        } 
+        // make this animation end
+        else if (tick > typeTicks + waitTicks + 5) {
+            nametag.textContent = targetText;
+            clearInterval(interval);
+        }
+        tick++;
+    }, 100);
+</script>

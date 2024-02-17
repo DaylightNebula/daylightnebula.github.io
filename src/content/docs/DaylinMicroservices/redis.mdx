@@ -1,0 +1,73 @@
+---
+title: Daylin Microservices - Redis
+---
+This library is a great little utility for accessing and using Redis with your microservices.
+
+## Connecting
+To establish a connection with Redis, call this at or near the start of your program before doing anything else with Redis.
+```kotlin
+RedisConnection.init(
+    redisAddress: String,   // Address where this connection will look for a Redis instance.  Default if not set: "localhost"
+    redisPort: Int,         // Port where this connection will look for a Redis instance.  Default if not set: 6379
+    redisUsername: String,  // Username that, if set, this connection will try to use when connecting to a Redis instance.  Default if not set: ""
+    redisPassword: String,  // Password that, if set, this connection will try to use when connecting to a Redis instance.  Default if not set: ""
+    redisDatabase: Int,     // If set, tells Redis which database to connect too.  Default if not set: -1,
+    redisTimeout: logging   // The time after which any request to Redis will timeout.  Default if not set: 5000
+)
+```
+
+## Using a Redis value
+This library has a bunch of objects that can be used to read and write various types of values from Redis.
+To read and write to a float named "age", for example, you would do this:
+```kotlin
+val ageValue = RedisFloat("age", 0f)
+val age = ageValue.get()                                                // Synchronously gets the current value for age
+ageValue.getAsync().whenComplete { value, _ -> println("Age $value") }  // Asynchronously gets the current value for age
+ageValue.set(100f)                                                      // Synchronously sets the current value for age
+ageValue.setAsync(42f)                                                  // Asynchronously sets the current value for age
+```
+
+However, floats are not the only values you can read or write, here are your options:
+ * `RedisBoolean`
+ * `RedisShort`
+ * `RedisInt`
+ * `RedisLong`
+ * `RedisFloat`
+ * `RedisDouble`
+ * `RedisString`
+ * `RedisJSONObject`
+ * `RedisJSONArray`
+
+## Using a Redis table
+A `RedisTable` is useful for when you want to store a table in your Redis instance.
+Here is how to create a table and manipulate that table:
+```kotlin
+// Create a RedisTableEntry for our table
+data class Person(id: UUID, val name: String): RedisTableEntry(id) {
+    override fun toJson() = JSONObject().put("id", id).put("name", name)
+}
+
+// Create the table with a callback that will load an entry from the given ID and JSON
+val table = redisTable("persons") { id, json ->
+    Person(id, json.getString("name"))
+}
+
+// Add and remove elements
+val bob = Person(UUID.randomUUID(), "Bob")
+table.insertOrUpdate(bob)
+table.insertOrUpdateAsync(bob)
+table.remove(bob)
+table.removeAsync(bob)
+table.remove(bob.id)
+table.removeAsync(bob.id)
+
+// Get elements
+val all = table.getAll()
+table.getAll().whenComplete { all, _ -> println("All $all") }
+val allIDs = table.getAllIDs()
+table.getAllIDsAsync().whenComplete { allIDs, _ -> println("All IDs $allIDs") }
+val bobs = table.queryAll { it.name == "Bob" }
+table.queryAsync({ it.name == "Bob" }).whenComplete { bobs, _ -> println("Bobs $bobs") }
+val bob = table.getEntry(bob.id)
+table.getEntryAsync(bob.id).whenComplete { bob, _ -> println("Bob $bob") }
+```

@@ -1,0 +1,129 @@
+---
+import Titlename from '../components/Titlename.astro';
+import Projects from '../components/Projects.astro';
+import '../styles/index.css';
+import '@fortawesome/fontawesome-free/css/all.css';
+---
+
+<html lang="en" style="background-color: black;">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body>
+		<div class="bg">
+			<div>
+				<!-- Typing title -->
+				<Titlename/>
+
+				<div style="height: 1.5em;" />
+
+				<!-- introduction container -->
+				<div class = "intro-container fade-in">
+					<!-- picture of me -->
+					<div class = "me">
+						<img src="me.jpg"/>
+					</div>
+
+					<!-- contact info -->
+					<div class = "contact-container">
+
+						<!-- Linnk to discord github and email -->
+						<div class = "icon" onclick="discord()">
+							<i class="fa-brands fa-discord fa-lg"></i>
+						</div>
+						<div class = "icon" onclick="github()">
+							<i class="fa-brands fa-square-github fa-lg"></i>
+						</div>
+						<div class = "icon" onclick="email()">
+							<i class="fa-solid fa-envelope fa-lg"></i>
+						</div>
+
+						<!-- spacer -->
+						<div style="width:5px;" />
+
+						<!-- link to  -->
+						<div class = "resume-container" onclick='resume()'>
+							<div class = "resume">
+								Resume
+								<i class="fa-solid fa-download"></i>
+							</div>
+						</div>
+
+						<script type="application/javascript">
+							function resume() {
+								window.open("https://docs.google.com/document/d/1LSn0J9IvtbmGekNQrXXonDL61ly3Q8Jah6F8L7kW21g/export?format=pdf");
+							}
+
+							function discord() {
+								window.open("https://discord.com/users/DaylightNebula");
+							}
+
+							function github() {
+								window.open("https://github.com/DaylightNebula/");
+							}
+
+							function email() {
+								window.open("https://mail.google.com/mail/?view=cm&fs=1&to=noah.w.shaw@gmail.com");
+							}
+						</script>
+					</div>
+				</div>
+
+				<div style="height: 1.5em;" />
+			</div>
+
+			<!-- Typing bottom text -->
+			<div class = "bottom-text">
+				I'm a developer making tools for server back-ends, game development and Minecraft modding/plugins.
+			</div>
+
+			<div style="height: 1em;" />
+
+			<Projects/>
+
+			<!-- typing effect for bottom-text -->
+			<script>
+				const ticksPerChar = 0.25;
+				let nametag = window.document.getElementsByClassName("bottom-text")[0] as HTMLDivElement;
+				let targetText = nametag.textContent!!;
+				nametag.textContent = "";
+				let tick = 0;
+				let waitTicks = 60;
+				let typeTicks = targetText.length * ticksPerChar;
+				let interval = setInterval(function() {
+					// do initial ticking like its about to starting typing
+					if (tick <= waitTicks) {}
+					// do typing
+					else if (tick <= typeTicks + waitTicks) {
+						let chars = (tick - waitTicks) / ticksPerChar;
+						nametag.textContent = targetText.slice(0, chars);
+					} 
+					// make this animation end
+					else if (tick > typeTicks + waitTicks) {
+						nametag.textContent = targetText;
+						clearInterval(interval);
+					}
+					tick++;
+				}, 100);
+			</script>
+
+			<!-- fade in intro-container -->
+			<script>
+				let element = window.document.getElementsByClassName("fade-in")[0] as HTMLDivElement;
+				element.style.opacity = "0";
+				setTimeout(function() {
+					let interval = setInterval(function() {
+						let opacity = parseFloat(element.style.opacity) + 0.01;
+						element.style.opacity = opacity.toString();
+						if (opacity >= 1.0) {
+							clearInterval(interval);
+						}
+					}, 10);
+				}, 6000);
+			</script>
+		</div>
+	</body>
+</html>

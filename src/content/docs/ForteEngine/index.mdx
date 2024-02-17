@@ -1,0 +1,62 @@
+---
+title: Forte Engine
+---
+import { LinkCard, Card, Icon, CardGrid } from '@astrojs/starlight/components';
+
+The Forte Engine work in progress engine designed to be a fast and light-weight render/game engine written in Rust for native and web platforms.
+
+## Design
+Forte Engine is designed around the idea of quick and light weight singleton components that integrate directly with the engine.
+This allows users to add to their app without much initial impact on the engine itself.  Stock, Forte Engine comes with three components, the `LightEngine`, `EguiEngine` and `UIEngine`.
+Each does exactly has their names imply.  The first allows lights to be added to a 3D app in a way that is common across components.  
+The second allows you to use the Egui immediate mode UI library to make quick debugging UI.  The third allows you to easily add 2D UI to your app.
+
+## Creating a Basic App
+Use the following macro to create your app and define its components and render pass'.
+
+```rust
+create_app! {
+    // the color the app will use to clear the main window with.
+    CLEAR_COLOR = wgpu::Color { r: 0.0, g: 0.0, b: 0.0, a: 0.0 },
+
+    // Defines the components of the engine similar to how you would with a struct.
+    // Inside the brackets, place the names in the app of components that component should have access too.
+    APP {
+        ui_engine: UIEngine[render_engine],
+        egui: EguiEngine[render_engine, inputs]
+    },
+
+    // Defines the render pass' that are needed to render your app.
+    PASSES {
+        // Each should be number 0 -> the number of passes you have
+        0: {
+            // An array that defines the parts of the render pass
+            PARTS: [
+                {
+                    // The name of the pipeline to use to render
+                    PIPELINE: "forte.ui",
+                    // An array of component IDs to be called before the main render
+                    PREPARE: [],
+                    // Render the UI
+                    RENDER: ui_engine,
+                },
+                {
+                    // Egui doesn't need a pipeline, but one must be set anyway
+                    PIPELINE: "forte.ui",
+                    // Nothing needs to be prepared for Egui
+                    PREPARE: [],
+                    // Render the Egui
+                    RENDER: egui
+                }
+            ],
+            // Tells the app whether to use a depth buffer for this render pass
+            DEPTH: true
+        }
+    }
+}
+
+// run the app
+fn main() { run_app::<App>() }
+````
+
+<LinkCard title="GitHub" href="https://github.com/Forte-Engine/forte_engine.git" />

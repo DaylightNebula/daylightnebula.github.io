@@ -1,0 +1,134 @@
+---
+title: Paper RPG Toolkit - Quests
+---
+Quests are a central part of any RPG.  Quests are created via a JSON file in the `quests` folder inside the `PaperRPGToolkit` folder inside your `plugins` folder.  The file name will serve as the quest ID.
+
+## Creating a Quest
+To create a quest in that JSON file mentioned above, start by giving your quest a name, description and an empty links array (these will be explained in the next section).
+
+### Example Empty Quest
+```json
+{
+    "name": "Bobs Apples",
+    "description": "Bob needs your help finding some apples.",
+    "links": []
+}
+```
+
+## Links
+For your players to be able to do anything with your quest, you will need to add some links.  These links tell `PaperRPGToolkit` what players need to do for this part of the quest.  These links are created and put inside the links array created in the previous section.
+
+To create a link, you must create a JSON object with a name, description and a goal for the quest link (goals will be explained in the next section).
+
+### Example Empty Link
+```json
+{
+    "name": "Find Bobs Apples",
+    "description": "Pickup 10 apples.",
+    "goal": {
+        "type": "get_item",
+        "item": "apple",
+        "amount": 10
+    }
+}
+```
+
+Optionally, you may an additional action to the above JSON named `complete_action` that will be called when this quest link is completed.
+
+## Goals
+Goals give your players something to progress through a quest link.  There are several different types of goals, each with different parameters.  Here is a list of different goals you can use with examples
+
+### Blank Goal
+This goal is a good placeholder goal when you don't know what to put in this link yet.  When a link with this goal is reached, it will be skipped.
+
+Example:
+```json
+{
+    "type": "blank"
+}
+```
+
+### Click NPC Goal
+This goal requires a player to find and click on an NPC.  Optionally, you can require the player to click on them with an item, and, optionally, remove those items.
+
+Heres an example:
+```json
+{
+    "type": "click_npc",
+    "item": "apple",            // Optional, tells PaperRPGToolkit that the NPC must be clicked with this item or custom item.
+    "amount": 10,               // Optional, 1 by default.  Tells PaperRPGToolkit that the player must have this amount of the above item when they click on the NPC.
+    "removeItems": true         // Optional, true by default.  If true, the items will be removed from the players inventory when the NPC is clicked.
+}
+```
+
+### Complete Dialogue Goal
+This goal requires a player to complete a dialogue chain and element.
+
+Heres an example that completes when the player completes a dialogue in the `bobsApples` chain and element with the `bobFoundApples` ID:
+```json
+{
+    "type": "complete_dialogue",
+    "id": "bobsApples",
+    "subid": "bobFoundApples"
+}
+```
+
+### Get Item(s) Goal
+This goal requires the player to get a certain amount of a certain item or custom item to complete.
+
+Heres an example:
+```json
+{
+    "type": "get_item",
+    "item": "apple",            // The item or custom item ID that the player must get.
+    "amount": 10                // The amount of the above item the player must get.  Optional, will default to 1 if not set.
+}
+```
+
+### Goto Location Goal
+This goal requires a player to go to a location to complete this link.
+
+Heres an example:
+```json
+{
+    "type": "goto_location",
+    "location": [100.0, 50.0, 100.0],   // The location for the player to move too.
+    "minDistance": 10                   // Optional, defaults to 1 block if not set.  Defines how far the player needs to be from the location to complete this goal.
+}
+```
+
+### Kill Entity(s) Goal
+This goal requires the player to kill a certain number of an entity type or custom entity to complete this link.
+
+Heres an example:
+```json
+{
+    "type": "kill_entity",
+    "entity": "skeleton",               // The entity type or custom entity ID the player must kill.
+    "kills": 10,                        // The number of kills the player needs to get.  Optional, defaults to 1 if not set.
+    "location": [50.0, 25.0, 50.0],     // The location near which the must kill the entities.  Optional, if not set, the player may kill the entities anywhere in the world.
+    "radius": 10                        // The radius inside which the player must kill the entities of the above location, only if that location is given.  Optional, only has effects if location above is set, defaults to 1 if necessary.
+}
+```
+
+### Press Shift Goal
+This goal requires the player to press shift to complete this link.
+
+Heres an example:
+```json
+{
+    "type": "press_shift"
+}
+```
+
+### Selected Numbered Option Goal
+This goal requires the player to select a hot bar slot using the numbers on their keyboard.
+
+Heres an example:
+```json
+{
+    "type": "select_number",
+    "min": 0,                   // The minimum slot to let the player select, starting at zero (zero being the left most slot).  Optional, this will default to zero if not set.
+    "max": 8                    // The maximum slot to let the player select.  Optional, this will default to seven if not set.
+}
+```

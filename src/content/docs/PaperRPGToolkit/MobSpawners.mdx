@@ -1,0 +1,23 @@
+---
+title: Paper RPG Toolkit - Mob Spawners
+---
+Custom mob spawners are nice because they act like spawner blocks but are more configurable and are invisible.  You may want this if you want to make sure there is always 10 spiders in a certain area for players to fight, for example.
+These are all created by commands and saved automatically.
+
+## Create Command
+`/createmobspawner <custom mob id or entity type> <radius> [<x> <y> <z>] [<min children> <max children>] [<min ticks between spawn> <max ticks between spawn>]`
+
+This command creates a new mob spawner for the custom mob or entity specified in the radius specified.  
+Optionally, you may specify a location for the spawner, if this is not given, the location of your player will be used.
+Optionally, you may also specify a min and max entities that to be spawned.  By default, these values will be 0 and 10 respectively.
+Optionally, you may specify the min and max ticks between spawns when there is space in this spawner.  By default, these values will be 20 and 60 ticks respectively.
+
+## Remove Nearby Command
+`/removenearbyspawners <radius>`
+
+Removes nearby spawners in the given radius (in blocks) around your player.
+
+## Toggle Spawner Visible Command
+`/togglespawnervisible`
+
+Toggles if spawners should be made visible by playing a particle effect at their location.

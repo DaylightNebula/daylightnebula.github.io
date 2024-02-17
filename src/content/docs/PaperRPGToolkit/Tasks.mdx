@@ -1,0 +1,42 @@
+---
+title: Paper RPG Toolkit - Tasks
+---
+Tasks are used in PaperRPGToolkit to give tasks to custom entities.
+
+These are added to the custom entity JSON files in their tasks array as described in the `Mobs` article.
+
+## Task options
+### Attack Nearby Players
+This tells the entity to attack nearby players in a certain radius.
+
+Heres an example:
+```json
+{
+    "type": "attack_players",
+    "detectRange": 5.0              // The range to attack players inside.
+}
+```
+
+### Stay at Point
+This tells the entity to stay a given point.
+
+```json
+{
+    "type": "stay",
+    "world": 0,                     // The dimension in which the entity should stay.  By default this is 0 or the over world.
+    "location": [60.0, 40.0, 60.0]  // The location in which the entity should stay at.
+}
+```
+
+### Wander Near Point
+This tells the entity to wander near a given point.
+
+```json
+{
+    "type": "wander",
+    "world": 0,                     // The dimension in which the entity is present.  By default this is 0 or the over world.
+    "location": [60.0, 40.0, 60.0], // The location in which the entity should wander near.
+    "range": 10,                    // The distance in which the entity should wander in.
+    "forceWhenOutOfRange": true     // Tells PaperRPGToolkit whether it should force this task to override all other tasks when the entity is out of the range given above.
+}
+```

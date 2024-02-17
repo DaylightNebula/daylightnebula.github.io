@@ -1,0 +1,25 @@
+<div class="projects-group">
+    <div class="projects-header" onclick="docs()" >
+        My Projects
+    </div>
+</div>
+
+<script type="application/javascript">
+    function docs() { window.location.href = "/intro"; }
+</script>
+
+
+<!-- fade in projects button -->
+<script>
+    let element = window.document.getElementsByClassName("projects-group")[0] as HTMLDivElement;
+    element.style.opacity = "0";
+    setTimeout(function() {
+        let interval = setInterval(function() {
+            let opacity = parseFloat(element.style.opacity) + 0.01;
+            element.style.opacity = opacity.toString();
+            if (opacity >= 1.0) {
+                clearInterval(interval);
+            }
+        }, 10);
+    }, 6000);
+</script>

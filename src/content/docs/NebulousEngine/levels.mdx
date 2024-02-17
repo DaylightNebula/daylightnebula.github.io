@@ -1,0 +1,77 @@
+---
+title: Nebulous Engine - Levels
+---
+The levels module assists the users in handling level-specific entities.  This system consists of four components, the `Levels` plugin, the `CurrentLevel` component, the `Level` resource and an enum created by the user to define the level.
+
+## Creating A Enum to Define Your Levels
+An enum to represent your current level is needed for everything in this module.  This enum must implement `Default` so that the system knows which level to start with.
+This enum must implement some other Bevy and Rust traits to be able to be used, here is a list of them: `States`, `Debug`, `Clone`, `Hash`, `Eq`, `PartialEq`.
+
+Heres an example:
+```rust
+#[derive(States, Default, Debug, Clone, Hash, Eq, PartialEq)]
+enum TestLevels {
+    #[default]
+    TestA,
+    TestB
+}
+```
+
+## The Levels Plugin
+The `Levels` plugin is a Bevy plugin that handles your levels.  The plugin takes the enum created above and initializes an instance of the `Level` resource to assist in managing the current level, as well as, handles de-spawning any level-specific entities on a level change.
+
+Heres how to use this with the `TestLevels` enum created above:
+```rust
+fn main() {
+    App::new()
+        .add_plugins(Levels::<TestLevels>::default())
+        .add_systems(Startup, setup)
+        .run();
+}
+```
+
+## The Level Resource
+The `Level` resource is created by the above `Levels` plugin to assist in the control of levels.
+
+Here is the functions available:
+```rust
+fn use_resource(level: ResMut<Level<TestLevels>>, commands: &mut Commands) {
+    let current_level = level.current();                            // Gets the current level.
+    level.goto(TestLevels::TestB);                                  // Tells the `Levels` plugin to proceed to this level.
+    level.add(/* Some entity */);                                   // Adds an entity to the current level.
+    let entity = level.spawn(commands, /* Some Bevy bundle */);     // Spawns an entity to the current level using the given bundle.
+}
+```
+
+Heres is an example of adding an entity to our level:
+```rust
+fn start_a(
+    level: ResMut<Level<TestLevels>>,
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+) {
+    level.spawn(&mut commands, 
+        PbrBundle {
+            mesh: meshes.add(Mesh::from(shape::Cube { size: 1.0 })),
+            material: materials.add(Color::rgb_u8(124, 144, 255).into()),
+            transform: Transform::from_xyz(0.0, 0.5, 0.0),
+            ..default()
+        }
+    );
+}
+```
+
+## The Current Level Component
+The `CurrentLevel` component marks an entity as belonging to the current level.  The `add` and `spawn` functions mentioned in the previous section adds this component to those entities.  
+When a level changes, any entity marked with the `CurrentLevel` component will be de-spawned.
+
+Heres an example:
+```rust
+fn example(
+    commands: &mut Commands,
+    entity: // some instance of `Entity`
+) {
+    commands.entity(entity).insert(CurrentLevel);
+}
+```
