@@ -1,0 +1,21 @@
+---
+title: daylightlang
+---
+import { LinkCard, Card, Icon, CardGrid } from '@astrojs/starlight/components';
+
+An experimental programming language using LLVM inspired by Kotlin and Rust.
+
+<img src="/daylightlang.png" />
+
+A basic hello world example looks like this:
+```kotlin
+const helloWorld: str = "Hello World!\n"
+
+extern printf(text: str*, ...): i32
+
+fun main() {
+    printf(helloWorld)
+}
+```
+
+<LinkCard title="GitHub" href="https://github.com/DaylightNebula/daylightlang.git" />
