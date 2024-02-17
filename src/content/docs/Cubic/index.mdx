@@ -21,6 +21,8 @@ Here are some examples of what may now be possible:
 Right now, Cubic only allows players to create a new game from a template that they have already copied into cubics templates folder.  When the player starts a game, the server is started, after which the player joins the server.
 The server and client both have a HTTP server that they use to communicate with each other.  They will occasionally ping each other, and when a game server starts, it tells the clients HTTP server that it is loaded and ready for the player to connect.
 
+<img src = "/cubic-1.png"/>
+
 ## What we could do
 ### Custom Game Mode via Custom Server Implementations
 Minecraft is not set up for lots of different types of games.  
@@ -33,9 +35,9 @@ Some examples of this are:
 Custom server implementations can replace, rewrite or simply be put together in ways to get around all of these issues.
 
 ### Easy to use mod API that is less intrusive
-No longer would we need to rely on modifying the games source code, or use Mojangs mess to create something like a new item or entity.  We could create our own simple, easy to use API that requires none of Mojangs methods, bloat or mappings.\
+No longer would we need to rely on modifying the games source code, or use Mojangs mess to create something like a new item or entity.  We could create our own simple, easy to use API that requires none of Mojangs methods, bloat or mappings.
 
-Since the game servers would no longer need to modify client source code to add custom features or inject themselves into the client, we can create a safer, less intrusive system for our players.\
+Since the game servers would no longer need to modify client source code to add custom features or inject themselves into the client, we can create a safer, less intrusive system for our players.
 
 Updating mods would also be easier as this mod API would be platform agnostic so that when Mojang updates, only the API would need an update, not the mods.
 
