@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Gearbox web demo</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #202020; }
+      canvas { width: 100%; height: 100%; display: block; }
+    </style>
+    
+<script type="module">
+import init, * as bindings from './gearbox-17bd9d2dfbb3914.js';
+const wasm = await init({ module_or_path: './gearbox-17bd9d2dfbb3914_bg.wasm' });
+
+
+window.wasmBindings = bindings;
+
+
+dispatchEvent(new CustomEvent("TrunkApplicationStarted", {detail: {wasm}}));
+
+</script>
+    
+  <link rel="modulepreload" href="./gearbox-17bd9d2dfbb3914.js" crossorigin="anonymous" integrity="sha384-FeA1c820bXJ7KYaaLJEXt0vUlKC1wOlSoHgB3P05z/5o4Dp224r887aX/+cNEa7q"><link rel="preload" href="./gearbox-17bd9d2dfbb3914_bg.wasm" crossorigin="anonymous" integrity="sha384-1HMCUbn8IAT84lQ2T4Ib04uLIAtxsVKhJuqEuUGI7BkPShUppHtzDtzZqM2BvZZX" as="fetch" type="application/wasm"></head>
+  <body>
+    <canvas id="canvas"></canvas>
+  </body>
+</html>

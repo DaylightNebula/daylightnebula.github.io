@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Noah Shaw · Software Engineer</title>
+    <meta name="description" content="Noah Shaw is a full-stack software engineer working in Java, Kotlin, TypeScript and Rust: backend services, JVM performance, and a from-scratch Rust game engine." />
+    <meta property="og:title" content="Noah Shaw · Software Engineer" />
+    <meta property="og:description" content="Full-stack engineer: backend services, JVM performance, and a from-scratch Rust engine." />
+    <meta property="og:image" content="/images/gearbox-cover.jpg" />
+    <meta name="theme-color" content="#f7eeea" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#170d22" media="(prefers-color-scheme: dark)" />
+    <script>
+      // pick the theme before first paint so the page never flashes the wrong one: the visitor's
+      // saved choice, or else their system setting (src/hooks/useTheme.ts keeps this up to date)
+      let saved = null;
+      try {
+        saved = localStorage.getItem("theme");
+      } catch (err) {
+        console.warn("reading the saved theme failed, following the system theme", err);
+      }
+      const system = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : system;
+    </script>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

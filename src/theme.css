@@ -1,0 +1,83 @@
+/*
+ * Colors for the whole site.  This is the only file that defines colors.
+ *
+ * 1. Palette: the four brand colors.  Change these and every shade on the site follows,
+ *    because the roles below are mixed from them.
+ * 2. Light and dark roles: what each color is used for, per theme.  Override a single role here
+ *    to tune one use without touching the palette, e.g. `--text-3: #6f6178;`.
+ * 3. Fixed colors: used on surfaces that stay dark in both themes (demo frames, the contact
+ *    band and the image viewer).
+ *
+ * The theme is chosen by `data-theme` on <html>, set before first paint by the script in
+ * `index.html` (the visitor's saved choice, or else their system setting).
+ */
+
+/* 1. palette */
+:root {
+  --palette-blush: #eddad4;
+  --palette-wine: #7e2039;
+  --palette-steel: #3c7590;
+  --palette-ink: #262626;
+}
+
+/* 2a. light theme: blush paper, ink text, wine accent */
+:root,
+:root[data-theme="light"] {
+  --bg: color-mix(in srgb, var(--palette-blush) 45%, white);
+  --surface: color-mix(in srgb, var(--palette-blush) 15%, white);
+  --surface-2: var(--palette-blush);
+
+  --text: var(--palette-ink);
+  --text-2: color-mix(in srgb, var(--palette-ink) 80%, var(--bg));
+  --text-3: color-mix(in srgb, var(--palette-ink) 64%, var(--bg));
+  --line: color-mix(in srgb, var(--palette-ink) 10%, transparent);
+  --line-strong: color-mix(in srgb, var(--palette-ink) 20%, transparent);
+
+  --accent: var(--palette-wine);
+  --accent-hover: color-mix(in srgb, var(--palette-wine) 85%, black);
+  --accent-ink: var(--bg);
+  --steel: var(--palette-steel);
+
+  --band: var(--palette-ink);
+  --frame: var(--palette-ink);
+  --shadow: 0 1px 2px color-mix(in srgb, var(--palette-ink) 5%, transparent),
+    0 8px 24px color-mix(in srgb, var(--palette-ink) 6%, transparent);
+
+  color-scheme: light;
+}
+
+/* 2b. dark theme: ink background, blush text, a lighter rose accent */
+:root[data-theme="dark"] {
+  --bg: color-mix(in srgb, var(--palette-ink) 60%, black);
+  --surface: color-mix(in srgb, var(--palette-ink) 85%, black);
+  --surface-2: color-mix(in srgb, var(--palette-ink) 95%, var(--palette-blush));
+
+  --text: var(--on-dark);
+  --text-2: color-mix(in srgb, var(--on-dark) 80%, var(--bg));
+  --text-3: color-mix(in srgb, var(--on-dark) 60%, var(--bg));
+  --line: color-mix(in srgb, var(--on-dark) 9%, transparent);
+  --line-strong: color-mix(in srgb, var(--on-dark) 18%, transparent);
+
+  --accent: color-mix(in srgb, var(--palette-wine) 35%, white);
+  --accent-hover: color-mix(in srgb, var(--palette-wine) 25%, white);
+  --accent-ink: var(--palette-ink);
+  --steel: color-mix(in srgb, var(--palette-steel) 55%, white);
+
+  --band: var(--surface-2);
+  --frame: color-mix(in srgb, var(--palette-ink) 40%, black);
+  --shadow: none;
+
+  color-scheme: dark;
+}
+
+/* 3. fixed colors for surfaces that are dark in both themes */
+:root {
+  --on-dark: color-mix(in srgb, var(--palette-blush) 60%, white);
+  --on-dark-2: color-mix(in srgb, var(--palette-blush) 72%, var(--palette-ink));
+  --on-dark-line: color-mix(in srgb, var(--on-dark) 30%, transparent);
+  --on-dark-hover: color-mix(in srgb, var(--on-dark) 8%, transparent);
+  --on-dark-button: var(--on-dark);
+  --on-dark-button-hover: white;
+  --on-dark-button-ink: var(--palette-ink);
+  --backdrop: color-mix(in srgb, var(--palette-ink) 40%, black);
+}
