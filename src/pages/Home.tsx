@@ -49,8 +49,8 @@ export function Home() {
               <a className="button button--primary" href="#projects">
                 See my work
               </a>
-              <a className="button" href={`mailto:${profile.email}`}>
-                Email me
+              <a className="button" href="#contact">
+                Contact me
               </a>
             </div>
           </div>
