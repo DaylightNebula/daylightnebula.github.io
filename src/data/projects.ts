@@ -117,7 +117,7 @@ export const projects: Project[] = [
     slug: "gearbox",
     name: "Gearbox engine",
     summary:
-      "A simulation and game engine written from scratch in Rust: a highly concurrent ECS, a wgpu renderer, a signed distance field UI and skinned animations",
+      "A from-scratch Rust runtime built on a lock-granular concurrent ECS that has sustained 100K+ simulated entities, with a fixed-tick scheduler, a wgpu renderer and an SDF UI",
     language: "Rust",
     meta: ["4 crates", "200+ commits"],
     tags: ["Rust", "ECS", "WGPU", "WebAssembly", "SDF UI", "Concurrency"],
@@ -140,10 +140,10 @@ export const projects: Project[] = [
       "The UI is drawn as signed distance fields in a single fullscreen pass: rectangles, circles, bezier strokes, glyphs and vector icons, laid out like CSS flexbox with taffy. It supports retained entity widgets and immediate mode widgets, text inputs with selection and undo, scroll areas and context menus."
     ],
     highlights: [
-      "Simulated 100K+ asteroids at once in solar system simulations on Anarchy",
-      "Per-component locking, so systems block only on the exact data they share",
-      "Reflection, a text scene format and a TCP socket so editors and a CLI can inspect and edit a running world",
-      "Headless runs with fixed time steps and PNG screenshots for tests, CI and AI agents. The images on this page came from that mode",
+      "Sustained 100K+ concurrently simulated entities in solar system simulations on Anarchy",
+      "Per-component locking, so systems contend only on the exact data they share",
+      "Runtime reflection, a text serialization format and a TCP control socket so editors and a CLI can inspect and mutate live state",
+      "Deterministic headless runs with fixed time steps and PNG snapshots for regression tests, CI and AI agents. The images on this page came from that mode",
       "Skinned glTF and FBX models with GPU skinning, and rapier3d physics behind a feature flag",
       "Ships a Claude Code plugin that teaches AI assistants the engine's API and its current limits"
     ],
@@ -194,6 +194,53 @@ fn main() -> anyhow::Result<()> {
     ])
     .with(TextInput::new("let x = y;").multiline())
     .interactive();`
+      }
+    ]
+  },
+  {
+    slug: "daylin-microservices",
+    name: "Daylin Microservices",
+    summary:
+      "A Kotlin service-mesh framework: self-registering microservices with discovery, schema-validated RPC, typed cross-service errors and containerized test rigs",
+    language: "Kotlin",
+    meta: ["3 modules", "138 commits", "Published on JitPack"],
+    tags: ["Kotlin", "Ktor", "Microservices", "Docker", "Consul", "Service discovery"],
+    repos: [{ label: "DaylinMicroservices", url: `${gh}/DaylinMicroservices` }],
+    problem:
+      "Every new service in a backend repeats the same work: start a server, register somewhere so other services can find it, parse and check requests, and call other services safely. I wanted that work written once, so a new service is just its name and its endpoints.",
+    approach: [
+      "A Microservice is created from a config (name, tags, port) and a map of named endpoints. Each endpoint takes and returns JSON, and runs on an embedded Ktor server that picks a free port when none is set.",
+      "Services register themselves on start and keep a cache of every other running service, refreshed in the background, so they can look peers up by id, name or tag and react when one starts or stops. Discovery began on Consul and later moved to a small register service of its own.",
+      "Requests are checked against a schema before an endpoint runs, with required, optional and default fields, lists and nested objects. Endpoints return a Result that is either a value or an error, so failures travel between services as data instead of exceptions.",
+      "Services detect when they run inside Docker and work out their own address, and a script generates Docker Compose test rigs with many services for local testing."
+    ],
+    highlights: [
+      "A new service is a config and a map of endpoints, with registration, health pings and shutdown handled for you",
+      "Look up other services by name or tag, and get callbacks as services join and leave",
+      "Schema validation and typed results on every request between services",
+      "Runs in Docker, with generated multi-service test rigs",
+      "Documented and published on JitPack for other developers to use"
+    ],
+    parts: [
+      { name: "DaylinMicroservices-Core", description: "The Microservice class, its config, the request client and the service cache" },
+      { name: "DaylinMicroservices-Register", description: "The register service that tracks which services are running" },
+      { name: "DaylinMicroservices-Serializables", description: "Schemas, validation and the Result type shared by every service" }
+    ],
+    demos: [],
+    gallery: [],
+    code: [
+      {
+        title: "A service with one endpoint",
+        language: "Kotlin",
+        code: `val service = Microservice(
+    MicroserviceConfig("greeter", tags = listOf("greeter")),
+    endpoints = hashMapOf(
+        "hello" to (Schema("name" to SchemaElement.String()) to { json ->
+            Result.Ok(JSONObject().put("message", "Hello \${json.getString("name")}"))
+        })
+    )
+)
+service.start()`
       }
     ]
   },
@@ -317,57 +364,10 @@ fn matvec_main(ids: MatvecIds) {
     ]
   },
   {
-    slug: "daylin-microservices",
-    name: "Daylin Microservices",
-    summary:
-      "A small Kotlin framework for building microservices that find each other, validate their inputs and run together in Docker",
-    language: "Kotlin",
-    meta: ["3 modules", "138 commits", "Published on JitPack"],
-    tags: ["Kotlin", "Ktor", "Microservices", "Docker", "Consul", "Service discovery"],
-    repos: [{ label: "DaylinMicroservices", url: `${gh}/DaylinMicroservices` }],
-    problem:
-      "Every new service in a backend repeats the same work: start a server, register somewhere so other services can find it, parse and check requests, and call other services safely. I wanted that work written once, so a new service is just its name and its endpoints.",
-    approach: [
-      "A Microservice is created from a config (name, tags, port) and a map of named endpoints. Each endpoint takes and returns JSON, and runs on an embedded Ktor server that picks a free port when none is set.",
-      "Services register themselves on start and keep a cache of every other running service, refreshed in the background, so they can look peers up by id, name or tag and react when one starts or stops. Discovery began on Consul and later moved to a small register service of its own.",
-      "Requests are checked against a schema before an endpoint runs, with required, optional and default fields, lists and nested objects. Endpoints return a Result that is either a value or an error, so failures travel between services as data instead of exceptions.",
-      "Services detect when they run inside Docker and work out their own address, and a script generates Docker Compose test rigs with many services for local testing."
-    ],
-    highlights: [
-      "A new service is a config and a map of endpoints, with registration, health pings and shutdown handled for you",
-      "Look up other services by name or tag, and get callbacks as services join and leave",
-      "Schema validation and typed results on every request between services",
-      "Runs in Docker, with generated multi-service test rigs",
-      "Documented and published on JitPack for other developers to use"
-    ],
-    parts: [
-      { name: "DaylinMicroservices-Core", description: "The Microservice class, its config, the request client and the service cache" },
-      { name: "DaylinMicroservices-Register", description: "The register service that tracks which services are running" },
-      { name: "DaylinMicroservices-Serializables", description: "Schemas, validation and the Result type shared by every service" }
-    ],
-    demos: [],
-    gallery: [],
-    code: [
-      {
-        title: "A service with one endpoint",
-        language: "Kotlin",
-        code: `val service = Microservice(
-    MicroserviceConfig("greeter", tags = listOf("greeter")),
-    endpoints = hashMapOf(
-        "hello" to (Schema("name" to SchemaElement.String()) to { json ->
-            Result.Ok(JSONObject().put("message", "Hello \${json.getString("name")}"))
-        })
-    )
-)
-service.start()`
-      }
-    ]
-  },
-  {
     slug: "diegetic-soup",
     name: "Diegetic Soup",
     summary:
-      "In-world Minecraft UIs laid out like CSS flexbox, built from packet-only entities and updated by diffing what each player last saw",
+      "A server-driven UI framework with flexbox layout that streams only per-client state diffs over the wire, so bandwidth scales with change, not UI size",
     language: "Kotlin",
     meta: ["Java + Kotlin APIs", "Published on JitPack"],
     tags: ["Kotlin", "Java", "Minestom", "Paper", "Networking", "Layout"],
@@ -428,7 +428,7 @@ service.start()`
     slug: "meld",
     name: "Meld",
     summary:
-      "A bare-bones Minecraft server in Kotlin where even login, players and worlds are swappable modules",
+      "A protocol-level TCP server for a third-party binary protocol, where every subsystem down to authentication is a hot-swappable module",
     language: "Kotlin",
     meta: ["135 commits", "Longest running project"],
     tags: ["Kotlin", "Networking", "TCP", "Protocols", "Modular design"],

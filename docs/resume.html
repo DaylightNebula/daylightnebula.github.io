@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Noah Shaw Resume</title>
+<style>
+  @page { size: Letter; margin: 0.4in 0.5in; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 9.2pt/1.27 "Helvetica Neue", Helvetica, Arial, sans-serif; color: #1a1a1a; }
+  a { color: #1f4e79; }
+  h1 { margin: 0; font-size: 22pt; line-height: 1.1; color: #1f4e79; }
+  .title { font-size: 11.5pt; color: #444; }
+  .contact { font-size: 9pt; color: #444; margin-top: 1px; }
+  h2 { margin: 7px 0 3px; padding-bottom: 2px; font-size: 10.5pt; color: #1f4e79; border-bottom: 1.2px solid #1f4e79; letter-spacing: 0.02em; }
+  p { margin: 0; }
+  .skills p { margin: 1px 0; }
+  .job { margin-top: 5px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; }
+  .row .role { color: #444; font-weight: normal; }
+  .dates { color: #444; white-space: nowrap; }
+  .context { font-style: italic; color: #555; font-size: 9pt; }
+  ul { margin: 1px 0 0; padding-left: 14px; }
+  li { margin: 0.5px 0; }
+  .project { margin: 2px 0; }
+  .lang { color: #555; }
+</style>
+</head>
+<body>
+  <h1>Noah Shaw</h1>
+  <div class="title">Backend &amp; Full-Stack Software Engineer</div>
+  <div class="contact">(505) 377-7011 &nbsp;|&nbsp; <a href="mailto:noah.w.shaw@gmail.com">noah.w.shaw@gmail.com</a> &nbsp;|&nbsp; <a href="https://github.com/DaylightNebula">github.com/DaylightNebula</a> &nbsp;|&nbsp; <a href="https://daylightnebula.github.io">Portfolio</a></div>
+
+  <h2>SUMMARY</h2>
+  <p>Backend and full-stack engineer with 5+ years building distributed JVM services, high-throughput data APIs and React/Astro web platforms for systems serving millions of users. Specializes in runtime performance engineering, microservice architecture and LLM-integrated pipelines, typically as one of 1–3 engineers owning the full stack from bare metal and AWS to the browser.</p>
+
+  <h2>TECHNICAL SKILLS</h2>
+  <div class="skills">
+    <p><b>Languages:</b> Java, Kotlin, TypeScript, JavaScript, Rust, C, Python</p>
+    <p><b>Backend:</b> Distributed systems, microservices, API design, JVM performance tuning, concurrency, Consul, TCP/WebSocket</p>
+    <p><b>Data:</b> PostgreSQL, MySQL, MongoDB, Redis</p>
+    <p><b>Frontend:</b> React, Astro</p>
+    <p><b>DevOps &amp; Cloud:</b> AWS, bare-metal hosting, Docker, Jenkins, GitHub Actions, CI/CD, regression testing</p>
+    <p><b>AI:</b> LLM pipeline integration for content validation, autonomous bug triage and PR generation</p>
+  </div>
+
+  <h2>EXPERIENCE</h2>
+  <div class="job">
+    <div class="row"><span><b>Systems Solutions</b> <span class="role">— Contract Full-Stack Software Engineer</span></span><span class="dates">Oct 2025 – Present</span></div>
+    <div class="context">Remote · Distributed real-time platform with millions of registered users and tens of thousands daily</div>
+    <ul>
+      <li>Cut service bootstrap times by 50% and sharply reduced cluster-wide batch workload runtimes through JVM runtime and memory-management tuning, at times outperforming equivalent Rust implementations.</li>
+      <li>Modernize a large legacy Java/Kotlin codebase serving tens of thousands of daily active users, engineering against production tables of 10M+ rows.</li>
+      <li>Designed LLM-integrated pipelines for real-time content validation with human-in-the-loop review, autonomous bug triage that opens pull requests, and AI-driven user-facing features.</li>
+      <li>Built isolated test harnesses and regression environments for legacy services with no CI/CD, scaling the QA team's validation throughput and sharply reducing defects reaching production.</li>
+      <li>Own new services from design through release, documented for engineering, business stakeholders and users.</li>
+    </ul>
+  </div>
+  <div class="job">
+    <div class="row"><span><b>TechnoClash LLC</b> <span class="role">— Contract Software Engineer</span></span><span class="dates">Mar 2025 – Oct 2025</span></div>
+    <div class="context">Remote · Distributed real-time platform</div>
+    <ul>
+      <li>Built and operated a microservice and database tier orchestrating multi-tenant session state for concurrent users.</li>
+      <li>Built CI/CD pipelines and automated test suites that gate every deployment, reducing release risk.</li>
+      <li>Designed and implemented new backend services in Java/Kotlin, documented for engineering, the business and users.</li>
+    </ul>
+  </div>
+  <div class="job">
+    <div class="row"><span><b>Daylin Software House</b> <span class="role">— Independent Contractor</span></span><span class="dates">Nov 2024 – Mar 2025</span></div>
+    <ul>
+      <li>Ran an independent software contracting business with short client engagements; closed it after accepting new roles.</li>
+    </ul>
+  </div>
+  <div class="job">
+    <div class="row"><span><b>MC Legion Games / Starfury Contracting</b> <span class="role">— Full-Stack Software Engineer</span></span><span class="dates">Jun 2021 – Oct 2024</span></div>
+    <div class="context">Remote · Web platform and distributed real-time backend; project moved between companies, role unchanged</div>
+    <ul>
+      <li>Architected microservice backends that grew from 2 to 24 services, owning boundaries, data stores and inter-service APIs.</li>
+      <li>Built analytics APIs that query 100K+ user records efficiently.</li>
+      <li>Built low-latency state-aggregation APIs that assemble each session's state from user records before it starts.</li>
+      <li>Built search and data-access APIs with React/Astro frontends over users' own and shared data.</li>
+      <li>Established CI/CD pipelines and testing practices; documented changes affecting users and operations.</li>
+    </ul>
+  </div>
+
+  <h2>EDUCATION</h2>
+  <div class="row"><span><b>University of Colorado Denver</b> <span class="role">— Bachelor's in Computer Science</span></span><span class="dates">Denver, CO</span></div>
+
+  <h2>PROJECTS</h2>
+  <p class="project"><b>Gearbox / Anarchy</b> <span class="lang">(Rust, WGPU)</span> — Lock-granular concurrent ECS runtime that sustained 100K+ simulated entities: per-component borrow flags so systems contend only on shared data, chunked columnar storage and deterministic headless runs for regression testing. <a href="https://github.com/DaylightNebula/Gearbox">GitHub</a></p>
+  <p class="project"><b>Daylin Microservices</b> <span class="lang">(Kotlin, Ktor, Consul, Docker)</span> — Service-mesh framework with self-registration, cached service discovery, schema-validated RPC and typed cross-service errors; published on JitPack. <a href="https://github.com/DaylightNebula/DaylinMicroservices">GitHub</a></p>
+  <p class="project"><b>Shader Magician</b> <span class="lang">(Rust, proc macros)</span> — Rust-to-WGSL compiler as an attribute macro, a WGSL parser/printer, and a GPU abstraction layer; validated against real GPU compute output. <a href="https://github.com/DaylinSoftwareHouse/shader_magician">GitHub</a></p>
+  <p class="project"><b>Meld</b> <span class="lang">(Kotlin, TCP)</span> — Protocol-level TCP server for a third-party binary protocol, with every subsystem down to authentication a hot-swappable module. <a href="https://github.com/DaylightNebula/Meld">GitHub</a></p>
+</body>
+</html>

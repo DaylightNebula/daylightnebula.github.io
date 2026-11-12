@@ -23,29 +23,29 @@ export interface Job {
 export const jobs: Job[] = [
   {
     company: "Systems Solutions",
-    role: "Contract Full-Stack Software Developer",
+    role: "Contract Full-Stack Software Engineer",
     start: "Oct 2025",
     end: "Present",
-    context: "Remote · Large-scale Minecraft server network with millions of users",
+    context: "Remote · Distributed real-time platform with millions of registered users and tens of thousands daily",
     highlights: [
-      "Design, build and ship novel amazing features, documenting every change for engineers, the business and users",
-      "Built AI systems for chat moderation (flagging only), automated bug-report handling that opens pull requests, and user-facing features that make the game world feel more alive",
-      "Built testing tooling for legacy systems without CI/CD, letting the testing team scale substantially and sharply reducing bugs reaching production",
-      "Maintain and modernize a large legacy Java/Kotlin codebase serving tens of thousands of daily users, developing against production tables over 10M rows",
-      "Cut server boot times in half and significantly reduced the runtime of network-wide workloads, such as updating every active entity across the network. JVM optimizations at times outperformed equivalent Rust implementations",
+      "Cut service boot up times by 50% and sharply reduced the runtime of cluster-wide batch workloads that mutate every live state instance, through JVM runtime and memory-management tuning that at times outperformed equivalent Rust implementations",
+      "Designed LLM-integrated pipelines for real-time content validation with human-in-the-loop review, autonomous bug triage that opens pull requests, and AI-driven user-facing features",
+      "Built isolated test harnesses and regression environments for legacy services with no CI/CD, scaling the QA team's validation throughput and sharply reducing defects reaching production",
+      "Modernize a large legacy Java/Kotlin codebase serving tens of thousands of daily active users, engineering against production tables of 10M+ rows",
+      "Own new services and features from design through release, with documentation for engineering, business stakeholders and users"
     ],
-    tech: ["Java", "Kotlin", "Legacy Code", "LLMs"]
+    tech: ["Java", "Kotlin", "JVM tuning", "SQL", "LLMs"]
   },
   {
     company: "TechnoClash LLC",
-    role: "Contract Software Developer",
+    role: "Contract Software Engineer",
     start: "Mar 2025",
     end: "Oct 2025",
-    context: "Remote · Minecraft server network",
+    context: "Remote · Distributed real-time platform",
     highlights: [
-      "Developed and maintained a network of microservices and databases powering custom multiplayer game modes",
-      "Built and maintained CI/CD pipelines and automated testing",
-      "Designed and implemented novel features in Java/Kotlin, documented for the development team, the business and users"
+      "Built and operated a microservice and database tier orchestrating multi-tenant session state for concurrent users",
+      "Built CI/CD pipelines and automated test suites that gate every deployment, reducing release risk",
+      "Designed and implemented new backend services in Java/Kotlin, documented for engineering, the business and users"
     ],
     tech: ["Java", "Kotlin", "Microservices", "CI/CD"]
   },
@@ -56,21 +56,21 @@ export const jobs: Job[] = [
     end: "Mar 2025",
     context: "Self-employed",
     highlights: [
-      "Ran an independent contracting business with short client engagements, and closed it after accepting new roles"
+      "Ran an independent software contracting business with short client engagements, and closed it after accepting new roles"
     ],
     tech: []
   },
   {
     company: "MC Legion Games / Starfury Contracting",
-    role: "Full-Stack Software Developer",
+    role: "Full-Stack Software Engineer",
     start: "Jun 2021",
     end: "Oct 2024",
-    context: "Remote · Web platform and Minecraft server network. The project moved between companies; the role stayed the same",
+    context: "Remote · Web platform and distributed real-time backend. The project moved between companies; the role stayed the same",
     highlights: [
-      "Architected and maintained microservice backends ranging from 2 to 24 services",
-      "Built analytics APIs that efficiently query 100K+ user records",
-      "Built user-facing APIs and React/Astro web features that let users search and interact with their own and other users' data",
-      "Built APIs that let game servers gather player data and assemble game state as fast as possible before each match",
+      "Architected microservice backends that grew from 2 to 24 services, owning service boundaries, data stores and inter-service APIs",
+      "Built analytics APIs that query 100K+ user records efficiently",
+      "Built low-latency state-aggregation APIs that assemble each session's state from user records before it starts",
+      "Built search and data-access APIs with React/Astro frontends over users' own and shared data",
       "Established CI/CD pipelines and testing practices, and documented changes affecting users and operations"
     ],
     tech: ["Microservices", "React", "Astro", "CI/CD"]

@@ -24,9 +24,9 @@ export interface Profile {
 
 export const profile: Profile = {
   name: "Noah Shaw",
-  title: "Full-Stack Software Engineer",
+  title: "Backend & Full-Stack Software Engineer",
   tagline:
-    "I build backend services, data-heavy APIs and web apps for platforms with millions of users, and in my own time a game engine in Rust from the ground up.",
+    "I build distributed JVM backends, high-throughput data APIs and full-stack web platforms for systems with millions of users, and in my own time a concurrent engine runtime in Rust from the ground up.",
   email: "noah.w.shaw@gmail.com",
   github: "https://github.com/DaylightNebula",
   resume: "/Resume.pdf",
@@ -49,9 +49,9 @@ export interface SkillGroup {
 export const skills: SkillGroup[] = [
   { label: "Languages", items: ["Java", "Kotlin", "TypeScript", "JavaScript", "Rust", "C", "Python"] },
   { label: "Frontend", items: ["React", "Astro"] },
-  { label: "Backend", items: ["API design", "Microservices", "JVM performance tuning", "Consul", "TCP / WebSocket networking"] },
+  { label: "Backend", items: ["Distributed systems", "Microservice architecture", "API design", "JVM performance tuning", "Concurrency", "Service discovery (Consul)", "TCP / WebSocket networking"] },
   { label: "Data", items: ["PostgreSQL", "MySQL", "MongoDB", "Redis"] },
-  { label: "DevOps", items: ["AWS", "Bare metal", "Docker", "Jenkins", "GitHub Actions", "CI/CD", "Automated testing"] },
-  { label: "AI", items: ["LLM moderation", "Automated bug triage and PRs", "User-facing AI features"] },
-  { label: "Graphics", items: ["WGPU", "WGSL", "ECS architecture", "SDF rendering", "Skeletal animation"] }
+  { label: "DevOps", items: ["AWS", "Bare metal", "Docker", "Jenkins", "GitHub Actions", "CI/CD", "Regression testing"] },
+  { label: "AI", items: ["LLM pipeline integration", "Content validation", "Autonomous bug triage and PR generation"] },
+  { label: "Systems", items: ["Lock-granular concurrency", "ECS architecture", "Compilers and proc macros", "WGPU", "WGSL"] }
 ];

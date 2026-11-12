@@ -53,4 +53,12 @@ To rebuild a Gearbox demo, build the example with Trunk from the Gearbox reposit
 trunk build --release --example shapes --public-url ./ -d /tmp/shapes
 ```
 
+The resume's source is `docs/resume.html`. After editing it, render it to PDF with Chrome and copy it next to
+the site:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+  --print-to-pdf=public/Resume.pdf "file://$PWD/docs/resume.html" && cp public/Resume.pdf docs/Resume.pdf
+```
+
 `docs/github-header.md` is a profile README for the `DaylightNebula/DaylightNebula` repository.

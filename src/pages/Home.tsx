@@ -42,8 +42,9 @@ export function Home() {
               I build the servers for <em>millions of users</em>
             </h1>
             <p className="hero__lead">
-              Five years of Java, Kotlin and TypeScript services, data-heavy APIs and React web features. In my own time
-              I'm writing a game engine in Rust, which you can try in your browser on its project page.
+              Five years engineering distributed JVM backends, high-throughput data APIs and full-stack web platforms.
+              In my own time I build systems software in Rust, including a concurrent engine runtime you can run in the
+              browser.
             </p>
             <div className="hero__actions">
               <a className="button button--primary" href="#projects">
@@ -65,22 +66,21 @@ export function Home() {
           <div className="about">
             <div className="prose">
               <p>
-                I'm a full-stack software engineer with more than five years of experience, mostly working remotely
-                on small teams of one to three engineers. On teams that size I've looked after everything from
-                databases and backend services to the web pages people use, and I've learned to care about the whole
-                product, not just my part of it.
+                I'm a backend and full-stack engineer with more than five years of experience, mostly working remotely
+                on teams of one to three engineers. At that size I've owned the whole stack, from data stores and
+                service architecture to the APIs and web frontends on top, and I've learned to care about the whole
+                system, not just my part of it.
               </p>
               <p>
-                Much of my work has been for online game networks with large communities. Day to day, that means
-                keeping long-running systems healthy, optimizing them, and adding awesome new features
-                carefully. I document each change for other engineers, the business and the users, and I enjoy building
-                tools that make working with my code easier for the people around me.
+                Most of my work has been on distributed real-time platforms with millions of users. Day to day, that
+                means runtime and memory performance work on long-running JVM services, orchestrating state across
+                concurrent users, integrating LLM pipelines, and building test harnesses that lower deployment risk on
+                legacy systems. I document each change for other engineers, the business and the users.
               </p>
               <p>
-                Outside of work I keep learning by building new ideas for everything from fast backend systems to engines for simulation
-                and games. I'm looking for a
-                full-stack or backend role on a team where I can keep growing, help others and look after software
-                people rely on.
+                Outside of work I build systems from first principles: a lock-granular concurrent ECS, a Rust-to-WGSL
+                compiler, a service-discovery framework and protocol-level TCP servers. I'm looking for a backend or
+                full-stack role on a team where I can keep growing, help others and look after software people rely on.
               </p>
             </div>
             <div className="skills">
@@ -161,7 +161,7 @@ export function Home() {
         <div className="container">
           <h2 className="band__title" id="contact-title">Let's work together</h2>
           <p className="band__text">
-            I'm looking for full-stack, backend or systems roles. Email is the fastest way to reach me, and my resume
+            I'm looking for backend, full-stack or systems roles. Email is the fastest way to reach me, and my resume
             has the full details.
           </p>
           <div className="band__actions">
